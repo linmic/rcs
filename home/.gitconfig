@@ -1,0 +1,25 @@
+[user]
+	name = linmic
+	email = linmic_lin@htc.com
+[alias]
+	di = diff
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	amend = commit -C HEAD --amend
+	sh = !git-sh
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	ui = auto
+[core]
+	excludesfile = /Users/ihower/.gitignore
+	editor = vim
+[apply]
+	whitespace = nowarn
+[diff]
+	external = /usr/local/bin/git_diff_wrapper
+[pager]
+	diff =
