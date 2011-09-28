@@ -15,7 +15,8 @@ setopt APPEND_HISTORY
 # setopt AUTO_REMOVE_SLASH
 # setopt AUTO_RESUME		# tries to resume command of same name
 unsetopt BG_NICE		# do NOT nice bg commands
-setopt CORRECT			# command CORRECTION
+# setopt CORRECT			# command CORRECTION
+setopt nocorrectall
 setopt EXTENDED_HISTORY		# puts timestamps in the history
 # setopt HASH_CMDS		# turns on hashing
 #
@@ -23,8 +24,9 @@ setopt MENUCOMPLETE
 setopt ALL_EXPORT
 
 # Set/unset  shell options
-setopt   notify globdots correct pushdtohome cdablevars autolist
-setopt   correctall autocd recexact longlistjobs
+setopt   notify globdots pushdtohome cdablevars autolist
+# setopt   correctall autocd recexact longlistjobs
+setopt   autocd recexact longlistjobs
 setopt   autoresume histignoredups pushdsilent 
 setopt   autopushd pushdminus extendedglob rcquotes mailwarning
 unsetopt bgnice autoparamslash
@@ -202,3 +204,4 @@ zstyle '*' single-ignored show
 # enable dir n file highlight
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
