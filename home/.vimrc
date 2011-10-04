@@ -2,7 +2,6 @@
 " Linmic's vimrc
 " Po-Huan Lin <linmicya@gmail.com>
 
-color blugrine
 lang C
 
 set nocp " no vi
@@ -30,6 +29,8 @@ let g:CommandTMatchWindowAtTop=1 " show window at top
 
 " nerd series
 Bundle 'scrooloose/nerdcommenter'
+let mapleader = ','
+
 Bundle 'scrooloose/nerdtree'
 nnoremap <silent> <F1> :NERDTree<CR>
 
@@ -42,9 +43,13 @@ Bundle 'jslint.vim'
 let $JS_CMD='node'
 
 filetype plugin indent on
+
+color blugrine
+
 set ai " auto indent
 set noci " no copyindent
 set nosi " no smart indent
+
 
 au BufRead,BufNewFile *.mako set ft=mako syntax=html
 au BufRead,BufNewFile *.css set ft=css syntax=css3
@@ -78,3 +83,9 @@ set ff=unix
 set nolist
 " set listchars=tab:>-,trail:- " clearly show the diff among tabs and trailing spaces
 set ambw=double " only works if enc=utf-8
+
+" tab to indent
+nmap <tab> V>
+vmap <tab> >gv
+nmap <s-tab> V<
+vmap <s-tab> <gv

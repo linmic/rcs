@@ -204,4 +204,9 @@ zstyle '*' single-ignored show
 # enable dir n file highlight
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+
+# Load RVM function
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
+
+# default ruby version
+rvm use 1.8.7
