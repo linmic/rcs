@@ -1,6 +1,7 @@
-" -*- encoding: utf-8 -*-
-" Linmic's vimrc
-" Po-Huan Lin <linmicya@gmail.com>
+" .vimrc by Linmic <linmicya@gmail.com>
+
+" Vundle
+" git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 lang C
 
@@ -16,6 +17,15 @@ Bundle 'gmarik/vundle'
 " Snippets
 Bundle "http://github.com/gmarik/snipmate.vim.git"
 
+Bundle "guns/xterm-color-table.vim"
+
+" stylus
+Bundle 'https://github.com/wavded/vim-stylus.git'
+
+Bundle 'othree/javascript-syntax.vim'
+Bundle 'jiangmiao/simple-javascript-indenter'
+Bundle 'JSON.vim'
+
 " Git integration
 Bundle "git.zip"
 Bundle "fugitive.vim"
@@ -27,38 +37,49 @@ Bundle 'AutoComplPop'
 Bundle "git://git.wincent.com/command-t.git"
 let g:CommandTMatchWindowAtTop=1 " show window at top
 
-" nerd series
+" nerd series {{{
 Bundle 'scrooloose/nerdcommenter'
+let NERDSpaceDelims = 1
 let mapleader = ','
-
 Bundle 'scrooloose/nerdtree'
 nnoremap <silent> <F1> :NERDTree<CR>
+" }}}
 
 " othree series
 Bundle 'othree/html5.vim'
 Bundle 'othree/xml.vim'
 
-" JSLint
+" JSLint {{{
 Bundle 'jslint.vim'
 let $JS_CMD='node'
+" }}}
 
 filetype plugin indent on
+syntax on
 
-color blugrine
+set t_Co=256
+color leo
 
-set ai " auto indent
-set noci " no copyindent
-set nosi " no smart indent
+" indent
+set ai
+set noci
+set nosi
 
+set hlsearch " search highlighting
 
 au BufRead,BufNewFile *.mako set ft=mako syntax=html
 au BufRead,BufNewFile *.css set ft=css syntax=css3
 
-syntax on " syntax highlight
-set hlsearch " search highlighting
+au FileType python set omnifunc=pythoncomplete#Complete
+au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+au FileType html set omnifunc=htmlcomplete#CompleteTags
+au FileType css set omnifunc=csscomplete#CompleteCSS
+au FileType xml set omnifunc=xmlcomplete#CompleteTags
+au FileType php set omnifunc=phpcomplete#CompletePHP
+au FileType c set omnifunc=ccomplete#Complete
 
 set guifont=Monaco:h14
-set number " show line number
+set number
 
 set ignorecase
 set smartcase
@@ -66,9 +87,9 @@ set smartcase
 set nobk " no backup
 set nowb " no writebackup
 
-set foldmethod=indent
+set foldmethod=marker
 set foldcolumn=2
-set foldlevel=999 " expand all folds by default
+" set foldlevel=999 " expand all folds by default
 
 set fo+=mB " Chinese/Japanese line wrap setting (no space joining lines/wrap fix)
 

@@ -19,7 +19,5 @@
 	editor = vim
 [apply]
 	whitespace = nowarn
-[diff]
-	external = /usr/local/bin/git_diff_wrapper
 [pager]
 	diff =
