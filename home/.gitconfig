@@ -8,14 +8,15 @@
 	st = status
 	br = branch
 	amend = commit -C HEAD --amend
-	sh = !git-sh
+    sh = !git-sh
+    logg = log --graph
 [color]
 	diff = auto
 	status = auto
 	branch = auto
 	ui = auto
 [core]
-	excludesfile = /Users/ihower/.gitignore
+    # excludesfile = /Users/ihower/.gitignore
 	editor = vim
 [apply]
 	whitespace = nowarn

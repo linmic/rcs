@@ -19,6 +19,9 @@ Bundle "http://github.com/gmarik/snipmate.vim.git"
 
 Bundle "guns/xterm-color-table.vim"
 
+" javascript indenter
+Bundle 'jiangmiao/simple-javascript-indenter'
+
 " stylus
 Bundle 'https://github.com/wavded/vim-stylus.git'
 
@@ -62,13 +65,16 @@ color leo
 
 " indent
 set ai
-set noci
-set nosi
+set si
+set ci
+
+let g:SimpleJsIndenter_BriefMode = 1
 
 set hlsearch " search highlighting
 
 au BufRead,BufNewFile *.mako set ft=mako syntax=html
 au BufRead,BufNewFile *.css set ft=css syntax=css3
+au BufRead,BufNewFile *.conf set ft=sh syntax=sh
 
 au FileType python set omnifunc=pythoncomplete#Complete
 au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
