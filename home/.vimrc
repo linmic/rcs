@@ -1,6 +1,6 @@
 " .vimrc by Linmic <linmicya@gmail.com>
 
-" Vundle
+" Vundle preconfig
 " git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 lang C
@@ -51,6 +51,9 @@ nnoremap <silent> <F1> :NERDTree<CR>
 " othree series
 Bundle 'othree/html5.vim'
 Bundle 'othree/xml.vim'
+
+" coffeescript
+Bundle 'kchmck/vim-coffee-script.git'
 
 " JSLint {{{
 Bundle 'jslint.vim'
