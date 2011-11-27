@@ -55,6 +55,14 @@ Bundle 'othree/xml.vim'
 " coffeescript
 Bundle 'kchmck/vim-coffee-script.git'
 
+" hahhah
+Bundle 'mattn/hahhah-vim.git'
+set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)%=%{g:HahHah()}
+set laststatus=2
+
+" handlebars
+Bundle 'nono/vim-handlebars'
+
 " JSLint {{{
 Bundle 'jslint.vim'
 let $JS_CMD='node'
