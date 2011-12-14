@@ -21,4 +21,4 @@
 [apply]
 	whitespace = nowarn
 [pager]
-	diff =
+    # diff =

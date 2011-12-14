@@ -63,6 +63,11 @@ set laststatus=2
 " handlebars
 Bundle 'nono/vim-handlebars'
 
+Bundle "tpope/vim-markdown"
+
+" less
+Bundle 'groenewege/vim-less.git'
+
 " JSLint {{{
 Bundle 'jslint.vim'
 let $JS_CMD='node'
