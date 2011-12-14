@@ -113,7 +113,7 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 # Load RVM function
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
 
-alias ls="ls -GFv"
+alias ls="ls -GFv --color"
 
 # default ruby version
 rvm use 1.9.2
@@ -122,5 +122,5 @@ rvm use 1.9.2
 function check_compression {
     local unzipped=`curl "$1" --silent --write-out "%{size_download}"  --output /dev/null`
     local zipped=`curl -H "Accept-Encoding: gzip,deflate" "$1" --silent --write-out "%{size_download}" --output /dev/null`
-    echo "unzipped size: $unzipped, zipped size: $zipped"                                                                                                             
+    echo "unzipped size: $unzipped, zipped size: $zipped"
 }
