@@ -113,7 +113,7 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 # Load RVM function
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
 
-alias ls="ls -GFv --color"
+alias ls="ls -GFv"
 
 # default ruby version
 rvm use 1.9.2

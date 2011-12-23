@@ -117,7 +117,7 @@ set fo+=mB " Chinese/Japanese line wrap setting (no space joining lines/wrap fix
 
 set backspace=2
 set expandtab " turn tab into spaces
-set sw=4 sts=4 ts=4
+set sw=2 sts=2 ts=2
 
 set enc=utf-8
 set fenc=utf-8
