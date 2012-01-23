@@ -53,6 +53,12 @@ Bundle 'othree/html5.vim'
 Bundle 'othree/xml.vim'
 
 " coffeescript
+Bundle 'othree/coffee-check.vim'
+au BufRead,BufNewFile *.coffee set ft=coffee
+
+Bundle 'tpope/vim-rails.git'
+
+" coffeescript
 Bundle 'kchmck/vim-coffee-script.git'
 
 " hahhah
@@ -109,6 +115,8 @@ set smartcase
 set nobk " no backup
 set nowb " no writebackup
 
+set modeline
+set modelines=5
 set foldmethod=marker
 set foldcolumn=2
 " set foldlevel=999 " expand all folds by default

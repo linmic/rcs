@@ -124,3 +124,6 @@ function check_compression {
     local zipped=`curl -H "Accept-Encoding: gzip,deflate" "$1" --silent --write-out "%{size_download}" --output /dev/null`
     echo "unzipped size: $unzipped, zipped size: $zipped"
 }
+
+# nvm
+. ~/.nvm/nvm.sh

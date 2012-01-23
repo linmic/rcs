@@ -1,5 +1,5 @@
 [user]
-	name = linmic
+	name = Linmic
 	email = linmic_lin@htc.com
 [alias]
 	di = diff
@@ -8,8 +8,10 @@
 	st = status
 	br = branch
 	amend = commit -C HEAD --amend
-    sh = !git-sh
-    logg = log --graph
+  sh = !git-sh
+  logg = log --graph
+  weekly = log --author=linmic --pretty=format:'%h by %an, date: %ad, message: %s' --date=short --since='6 days ago' --no-merges
+  daily = log --author=linmic --pretty=format:'%h by %an, date: %ad, message: %s' --date=short --after='yesterday' --no-merges
 [color]
 	diff = auto
 	status = auto
