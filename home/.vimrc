@@ -22,6 +22,9 @@ Bundle "guns/xterm-color-table.vim"
 " javascript indenter
 Bundle 'jiangmiao/simple-javascript-indenter'
 
+Bundle 'vim-ruby/vim-ruby.git'
+Bundle 'vim-rails'
+
 " stylus
 Bundle 'https://github.com/wavded/vim-stylus.git'
 
@@ -132,7 +135,7 @@ set fenc=utf-8
 set ff=unix
 
 set nolist
-" set listchars=tab:>-,trail:- " clearly show the diff among tabs and trailing spaces
+set listchars=tab:>-,trail:- " clearly show the diff among tabs and trailing spaces
 set ambw=double " only works if enc=utf-8
 
 " tab to indent

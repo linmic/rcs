@@ -10,6 +10,7 @@
 	amend = commit -C HEAD --amend
   sh = !git-sh
   logg = log --graph
+  biweekly = log --author=linmic --pretty=format:'%h by %an, date: %ad, message: %s' --date=short --since='13 days ago' --no-merges
   weekly = log --author=linmic --pretty=format:'%h by %an, date: %ad, message: %s' --date=short --since='6 days ago' --no-merges
   daily = log --author=linmic --pretty=format:'%h by %an, date: %ad, message: %s' --date=short --after='yesterday' --no-merges
 [color]
@@ -20,6 +21,7 @@
 [core]
     # excludesfile = /Users/ihower/.gitignore
 	editor = vim
+	excludesfile = /Users/linmic/.gitignore
 [apply]
 	whitespace = nowarn
 [pager]
