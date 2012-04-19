@@ -66,7 +66,7 @@ Bundle 'kchmck/vim-coffee-script.git'
 
 " hahhah
 Bundle 'mattn/hahhah-vim.git'
-set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)%=%{g:HahHah()}
+set statusline=%<\ %n:%f\ %m%r%y[%{&fo}]%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)%=%{g:HahHah()}
 set laststatus=2
 
 " handlebars
@@ -101,7 +101,7 @@ au BufRead,BufNewFile *.mako set ft=mako syntax=html
 au BufRead,BufNewFile *.css set ft=css syntax=css3
 au BufRead,BufNewFile *.conf set ft=sh syntax=sh
 
-au FileType python set omnifunc=pythoncomplete#Complete
+au FileType python set omnifunc=pythoncomplete#Complete nosi
 au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 au FileType html set omnifunc=htmlcomplete#CompleteTags
 au FileType css set omnifunc=csscomplete#CompleteCSS
@@ -134,7 +134,7 @@ set enc=utf-8
 set fenc=utf-8
 set ff=unix
 
-set nolist
+set list
 set listchars=tab:>-,trail:- " clearly show the diff among tabs and trailing spaces
 set ambw=double " only works if enc=utf-8
 
@@ -143,3 +143,8 @@ nmap <tab> V>
 vmap <tab> >gv
 nmap <s-tab> V<
 vmap <s-tab> <gv
+
+" line wrapping
+highlight OverLength ctermbg=darkgray ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
+set tw=72 fo=cqt wm=0
