@@ -1,28 +1,29 @@
 [user]
-	name = Linmic
-	email = linmic_lin@htc.com
+  name = Linmic
+  email = linmic_lin@htc.com
 [alias]
-	di = diff
-	co = checkout
-	ci = commit
-	st = status
-	br = branch
-	amend = commit -C HEAD --amend
+  di = diff
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  pull = pull --rebase
+  amend = commit -C HEAD --amend
   sh = !git-sh
   logg = log --graph
   biweekly = log --author=linmic --pretty=format:'%h by %an, date: %ad, message: %s' --date=short --since='13 days ago' --no-merges
   weekly = log --author=linmic --pretty=format:'%h by %an, date: %ad, message: %s' --date=short --since='6 days ago' --no-merges
   daily = log --author=linmic --pretty=format:'%h by %an, date: %ad, message: %s' --date=short --after='yesterday' --no-merges
 [color]
-	diff = auto
-	status = auto
-	branch = auto
-	ui = auto
+  diff = auto
+  status = auto
+  branch = auto
+  ui = auto
 [core]
     # excludesfile = /Users/ihower/.gitignore
-	editor = vim
-	excludesfile = /Users/linmic/.gitignore
+  editor = vim
+  excludesfile = /Users/linmic/.gitignore
 [apply]
-	whitespace = nowarn
+  whitespace = nowarn
 [pager]
     # diff =
