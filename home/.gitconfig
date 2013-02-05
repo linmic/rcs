@@ -26,8 +26,8 @@
 [apply]
   whitespace = nowarn
 [pull]
-  default = simgle
+  default = simple
 [pager]
     # diff =
 [push]
-  default = simple
+  default = current
