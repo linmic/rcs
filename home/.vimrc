@@ -69,6 +69,10 @@ Bundle 'mattn/hahhah-vim.git'
 set statusline=%<\ %n:%f\ %m%r%y[%{&fo}]%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)%=%{g:HahHah()}
 set laststatus=2
 
+" Tagbar
+Bundle 'majutsushi/tagbar'
+nmap <F8> :TagbarToggle<CR>
+
 " handlebars
 Bundle 'nono/vim-handlebars'
 
@@ -76,6 +80,9 @@ Bundle "tpope/vim-markdown"
 
 " less
 Bundle 'groenewege/vim-less.git'
+
+" CSScomb
+Bundle 'linmic/CSScomb-for-Vim.git'
 
 " JSLint {{{
 Bundle 'jslint.vim'
@@ -144,7 +151,20 @@ vmap <tab> >gv
 nmap <s-tab> V<
 vmap <s-tab> <gv
 
+if &term=="xterm" || &term=="xterm-color"
+  :imap <Esc>Oq 1
+  :imap <Esc>Or 2
+  :imap <Esc>Os 3
+  :imap <Esc>Ot 4
+  :imap <Esc>Ou 5
+  :imap <Esc>Ov 6
+  :imap <Esc>Ow 7
+  :imap <Esc>Ox 8
+  :imap <Esc>Oy 9
+  :imap <Esc>Op 0
+endif
+
 " line wrapping
-highlight OverLength ctermbg=darkgray ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
-set tw=72 fo=cqt wm=0
+" highlight OverLength ctermbg=darkgray ctermfg=white guibg=#592929
+" match OverLength /\%81v.\+/
+" set tw=72 fo=cqt wm=0
