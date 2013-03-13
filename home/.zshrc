@@ -113,10 +113,15 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 # Load RVM function
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
 
-alias ls="ls -GFv"
+alias ls="ls -GFv --color"
+alias tmux="TERM=screen-256color-bce tmux"
+
+# fix keybindings
+bindkey "^[OH" beginning-of-line
+bindkey "^[OF" end-of-line
 
 # default ruby version
-rvm use 1.9.2
+rvm use 1.9.3
 
 # for checking webpage compressed or not
 function check_compression {

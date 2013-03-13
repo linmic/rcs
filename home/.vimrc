@@ -164,6 +164,17 @@ if &term=="xterm" || &term=="xterm-color"
   :imap <Esc>Op 0
 endif
 
+""""""""""""""
+" tmux fixes "
+""""""""""""""
+" Handle tmux $TERM quirks in vim
+if $TERM =~ '^screen-256color'
+  map <Esc>OH <Home>
+  map! <Esc>OH <Home>
+  map <Esc>OF <End>
+  map! <Esc>OF <End>
+endif
+
 " line wrapping
 " highlight OverLength ctermbg=darkgray ctermfg=white guibg=#592929
 " match OverLength /\%81v.\+/
