@@ -132,3 +132,22 @@ function check_compression {
 
 # nvm
 . ~/.nvm/nvm.sh
+if [ -e /usr/share/terminfo/x/xterm-256color ]; then
+  export TERM='xterm-256color'
+else
+  export TERM='xterm-color'
+fi
+
+alias tmux="TERM=screen-256color-bce tmux"
+#This line will tell the Go installer where to place the source code before compilation
+# export GOROOT=$HOME/gosource
+export GOPATH=$HOME/gosource
+
+#With this line, you choose the architecture of your machine.  
+#Those with 64 bit CPUs should enter "amd64" here.  
+export GOARCH=386
+export GOOS=linux
+export GOBIN=$GOPATH/bin
+ 
+#Include Go binaries in command path
+export PATH=$PATH:$GOBIN

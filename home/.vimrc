@@ -28,6 +28,9 @@ Bundle 'vim-rails'
 " stylus
 Bundle 'https://github.com/wavded/vim-stylus.git'
 
+" go
+Bundle 'git://github.com/uggedal/go-vim.git'
+
 Bundle 'othree/vim-javascript-syntax'
 Bundle 'jiangmiao/simple-javascript-indenter'
 Bundle 'JSON.vim'
