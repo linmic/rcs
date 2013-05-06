@@ -96,7 +96,8 @@ filetype plugin indent on
 syntax on
 
 set t_Co=256
-color leo
+" color leo
+color Tomorrow-Night-Eighties
 
 " indent
 set ai
