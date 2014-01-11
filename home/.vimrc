@@ -23,7 +23,7 @@ Bundle "guns/xterm-color-table.vim"
 Bundle 'jiangmiao/simple-javascript-indenter'
 
 Bundle 'vim-ruby/vim-ruby.git'
-Bundle 'vim-rails'
+Bundle 'tpope/vim-rails'
 
 " stylus
 Bundle 'https://github.com/wavded/vim-stylus.git'
@@ -39,11 +39,14 @@ Bundle 'JSON.vim'
 Bundle "git.zip"
 Bundle "fugitive.vim"
 
+Bundle "slim-template/vim-slim"
+
 " acp
 Bundle 'AutoComplPop'
 
 " Command-T
-Bundle "git://git.wincent.com/command-t.git"
+" Bundle "git://git.wincent.com/command-t.git"
+Bundle "wincent/Command-T"
 let g:CommandTMatchWindowAtTop=1 " show window at top
 
 " nerd series {{{
@@ -68,9 +71,9 @@ Bundle 'tpope/vim-rails.git'
 Bundle 'kchmck/vim-coffee-script.git'
 
 " hahhah
-Bundle 'mattn/hahhah-vim.git'
-set statusline=%<\ %n:%f\ %m%r%y[%{&fo}]%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)%=%{g:HahHah()}
-set laststatus=2
+" Bundle 'mattn/hahhah-vim.git'
+" set statusline=%<\ %n:%f\ %m%r%y[%{&fo}]%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)%=%{g:HahHah()}
+" set laststatus=2
 
 " Tagbar
 Bundle 'majutsushi/tagbar'
