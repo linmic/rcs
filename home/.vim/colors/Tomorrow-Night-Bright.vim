@@ -18,7 +18,6 @@ let s:blue = "7aa6da"
 let s:purple = "c397d8"
 let s:window = "4d5057"
 
-set background=dark
 hi clear
 syntax reset
 
@@ -331,6 +330,9 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("javaScriptRepeat", s:purple, "", "")
 	call <SID>X("javaScriptNumber", s:orange, "", "")
 	call <SID>X("javaScriptMember", s:orange, "", "")
+    call <SID>X("javascriptNull", s:orange, "", "")
+    call <SID>X("javascriptGlobal", s:blue, "", "")
+    call <SID>X("javascriptStatement", s:red, "", "")
 
 	" HTML Highlighting
 	call <SID>X("htmlTag", s:red, "", "")
@@ -375,3 +377,5 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	delf <SID>grey_level
 	delf <SID>grey_number
 endif
+
+set background=dark

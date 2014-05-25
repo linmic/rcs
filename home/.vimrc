@@ -31,7 +31,6 @@ Bundle 'https://github.com/wavded/vim-stylus.git'
 Bundle 'git://github.com/uggedal/go-vim.git'
 
 Bundle 'othree/vim-javascript-syntax'
-" Bundle 'jiangmiao/simple-javascript-indenter'
 Bundle 'JSON.vim'
 
 " Git integration
@@ -64,8 +63,6 @@ Bundle 'othree/xml.vim'
 Bundle 'othree/coffee-check.vim'
 au BufRead,BufNewFile *.coffee set ft=coffee
 
-Bundle 'tpope/vim-rails.git'
-
 " coffeescript
 Bundle 'kchmck/vim-coffee-script.git'
 
@@ -75,14 +72,34 @@ Bundle 'kchmck/vim-coffee-script.git'
 " set laststatus=2
 
 " Tagbar
+" gem install CoffeeTags
 Bundle 'majutsushi/tagbar'
-nmap <F8> :TagbarToggle<CR>
+" nmap <F8> :TagbarToggle<CR>
+" inoremap <c-t> <Esc>:TagbarToggle<CR>
+nmap <c-t> :TagbarToggle<CR>
+" coffeetags --vim-conf >> ~/.vimrc
+if executable('coffeetags')
+  let g:tagbar_type_coffee = {
+        \ 'ctagsbin' : 'coffeetags',
+        \ 'ctagsargs' : '',
+        \ 'kinds' : [
+        \ 'f:functions',
+        \ 'o:object',
+        \ ],
+        \ 'sro' : ".",
+        \ 'kind2scope' : {
+        \ 'f' : 'object',
+        \ 'o' : 'object',
+        \ }
+        \ }
+endif
 
 " handlebars
 Bundle 'nono/vim-handlebars'
 
-" Bundle "tpope/vim-markdown"
 Bundle "https://github.com/plasticboy/vim-markdown.git"
+" Bundle "tpope/vim-markdown"
+Bundle 'altercation/vim-colors-solarized.git'
 
 " less
 Bundle 'groenewege/vim-less.git'
@@ -100,8 +117,28 @@ filetype plugin indent on
 syntax on
 
 set t_Co=256
-" color leo
-color Tomorrow-Night-Eighties
+
+
+" 24 bit
+if !exists('$TMUX')
+  set guicolors
+  set background=dark
+  let g:solarized_visibility="high"
+  let g:solarized_contrast="high"
+  let g:solarized_termcolors=256
+  colorscheme solarized
+else
+  " color Tomorrow-Night-Eighties
+  " color leo
+  " color ir_black
+  " color grb256
+  " color codeschool
+  set background=dark
+  let g:solarized_visibility="high"
+  let g:solarized_contrast="high"
+  let g:solarized_termcolors=256
+  colorscheme solarized
+endif
 
 " indent
 set ai
@@ -159,6 +196,8 @@ vmap <tab> >gv
 nmap <s-tab> V<
 vmap <s-tab> <gv
 
+map <Esc>[B <Down>
+
 if &term=="xterm" || &term=="xterm-color"
   :imap <Esc>Oq 1
   :imap <Esc>Or 2
@@ -189,6 +228,40 @@ if &term =~ '^screen'
   execute "set <xRight>=\e[1;*C"
   execute "set <xLeft>=\e[1;*D"
 endif
+
+" ctrlp: {{{
+"
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+let g:ctrlp_show_hidden = 0
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_use_caching = 0
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  'node_modules$\|\.git$\|\.meteor$\|\.svn$\|dist$\|\.hg$',
+  \ 'file': '\.DS_Store$\|\.jpg$\|\.png$\|\.jpeg$\|\.gif$\|\.svg$'
+  \ }
+
+" let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+let g:ctrlp_user_command = {
+  \ 'types': {
+    \ 1: ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f'],
+    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+    \ },
+  \ 'fallback': 'find %s -type f'
+  \ }
+
+let g:ctrlp_prompt_mappings = {
+  \ 'AcceptSelection("e")': [],
+  \ 'AcceptSelection("t")': ['<cr>', '<c-m>'],
+  \ }
+
+" }}}
 
 " line wrapping
 " highlight OverLength ctermbg=darkgray ctermfg=white guibg=#592929
