@@ -23,7 +23,6 @@ Bundle "guns/xterm-color-table.vim"
 Bundle 'jiangmiao/simple-javascript-indenter'
 
 Bundle 'vim-ruby/vim-ruby.git'
-Bundle 'tpope/vim-rails'
 
 " stylus
 Bundle 'https://github.com/wavded/vim-stylus.git'
@@ -32,7 +31,7 @@ Bundle 'https://github.com/wavded/vim-stylus.git'
 Bundle 'git://github.com/uggedal/go-vim.git'
 
 Bundle 'othree/vim-javascript-syntax'
-Bundle 'jiangmiao/simple-javascript-indenter'
+" Bundle 'jiangmiao/simple-javascript-indenter'
 Bundle 'JSON.vim'
 
 " Git integration
@@ -82,13 +81,15 @@ nmap <F8> :TagbarToggle<CR>
 " handlebars
 Bundle 'nono/vim-handlebars'
 
-Bundle "tpope/vim-markdown"
+" Bundle "tpope/vim-markdown"
+Bundle "https://github.com/plasticboy/vim-markdown.git"
 
 " less
 Bundle 'groenewege/vim-less.git'
 
 " CSScomb
-Bundle 'linmic/CSScomb-for-Vim.git'
+" Bundle 'linmic/CSScomb-for-Vim.git'
+Bundle 'git://github.com/miripiruni/CSScomb-for-Vim.git'
 
 " JSLint {{{
 Bundle 'jslint.vim'
@@ -193,3 +194,4 @@ endif
 " highlight OverLength ctermbg=darkgray ctermfg=white guibg=#592929
 " match OverLength /\%81v.\+/
 " set tw=72 fo=cqt wm=0
+autocmd FileType ruby map <F9> :w<CR>:!ruby -c %<CR>
