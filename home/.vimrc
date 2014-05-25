@@ -229,6 +229,7 @@ if &term =~ '^screen'
   execute "set <xLeft>=\e[1;*D"
 endif
 
+" git clone https://github.com/kien/ctrlp.vim.git bundle/ctrlp.vim
 " ctrlp: {{{
 "
 set runtimepath^=~/.vim/bundle/ctrlp.vim
