@@ -1,6 +1,6 @@
 ZSH=$HOME/.oh-my-zsh
 # ZSH_THEME="af-magic"
-PATH="/Users/linmic/.rvm/gems/ruby-2.1.2/bin:/Users/linmic/bin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/Users/linmic/dev/adt-bundle-mac-x86_64-20140702/sdk/platform-tools:/Users/linmic/dev/adt-bundle-mac-x86_64-20140702/sdk/tools:$PATH"
+# PATH="$HOME/.rvm/gems/ruby-2.1.2/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:$HOME/dev/adt-bundle-mac-x86_64-20140702/sdk/platform-tools:$HOME/dev/adt-bundle-mac-x86_64-20140702/sdk/tools:$PATH"
 
 TZ="Asia/Taipei"
 HISTFILE=$HOME/.zhistory
@@ -94,5 +94,5 @@ alias shoebox='tmux attach -t shoebox'
 alias winsport='tmux a -t winsport'
 alias es='elasticsearch start'
 alias winsport_tunnel='ssh g.winsport.la -L8982:localhost:8982 -L8983:localhost:8983'
-source /Users/linmic/.iterm2_shell_integration.zsh
-export PATH=/Users/linmic/.rvm/gems/ruby-2.1.2/bin:/Users/linmic/.rvm/gems/ruby-2.1.2@global/bin:/Users/linmic/.rvm/rubies/ruby-2.1.2/bin:/Users/linmic/.rvm/bin:/Users/linmic/bin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/Users/linmic/dev/adt-bundle-mac-x86_64-20140702/sdk/platform-tools:/Users/linmic/dev/adt-bundle-mac-x86_64-20140702/sdk/tools:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Users/linmic/gosource/bin:/Users/linmic/depot_tools
+source $HOME/.iterm2_shell_integration.zsh
+export PATH=$HOME/.rvm/gems/ruby-2.1.2/bin:$HOME/.rvm/gems/ruby-2.1.2@global/bin:$HOME/.rvm/rubies/ruby-2.1.2/bin:$HOME/.rvm/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:$HOME/dev/adt-bundle-mac-x86_64-20140702/sdk/platform-tools:$HOME/dev/adt-bundle-mac-x86_64-20140702/sdk/tools:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$HOME/gosource/bin:$HOME/depot_tools
