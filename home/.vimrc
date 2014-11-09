@@ -127,10 +127,12 @@ syntax on
 
 set t_Co=256
 
+if has('gui_running')
+  set guicolors
+endif
 
 " 24 bit
 if !exists('$TMUX')
-  " set guicolors
   set background=dark
   let g:solarized_visibility="high"
   let g:solarized_contrast="high"
