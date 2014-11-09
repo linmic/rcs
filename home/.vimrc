@@ -24,20 +24,25 @@ Bundle 'jiangmiao/simple-javascript-indenter'
 
 Bundle 'vim-ruby/vim-ruby.git'
 
+Bundle 'bling/vim-airline'
+
 " stylus
 Bundle 'https://github.com/wavded/vim-stylus.git'
 
 " go
-Bundle 'git://github.com/uggedal/go-vim.git'
+Bundle 'fatih/vim-go'
 
-Bundle 'othree/vim-javascript-syntax'
+" Bundle 'othree/vim-javascript-syntax'
+Bundle 'pangloss/vim-javascript'
 Bundle 'JSON.vim'
 
 " Git integration
 Bundle "git.zip"
-Bundle "fugitive.vim"
+Bundle 'tpope/vim-fugitive'
 
 Bundle "slim-template/vim-slim"
+
+Bundle 'mtscout6/vim-cjsx'
 
 " acp
 Bundle 'AutoComplPop'
@@ -58,6 +63,8 @@ nnoremap <silent> <F1> :NERDTree<CR>
 " othree series
 Bundle 'othree/html5.vim'
 Bundle 'othree/xml.vim'
+
+Bundle 'tpope/vim-rails'
 
 " coffeescript
 Bundle 'othree/coffee-check.vim'
@@ -108,6 +115,8 @@ Bundle 'groenewege/vim-less.git'
 " Bundle 'linmic/CSScomb-for-Vim.git'
 Bundle 'git://github.com/miripiruni/CSScomb-for-Vim.git'
 
+Bundle "nathanaelkane/vim-indent-guides"
+
 " JSLint {{{
 Bundle 'jslint.vim'
 let $JS_CMD='node'
@@ -121,18 +130,13 @@ set t_Co=256
 
 " 24 bit
 if !exists('$TMUX')
-  set guicolors
+  " set guicolors
   set background=dark
   let g:solarized_visibility="high"
   let g:solarized_contrast="high"
   let g:solarized_termcolors=256
   colorscheme solarized
 else
-  " color Tomorrow-Night-Eighties
-  " color leo
-  " color ir_black
-  " color grb256
-  " color codeschool
   set background=dark
   let g:solarized_visibility="high"
   let g:solarized_contrast="high"
@@ -161,6 +165,9 @@ au FileType xml set omnifunc=xmlcomplete#CompleteTags
 au FileType php set omnifunc=phpcomplete#CompletePHP
 au FileType c set omnifunc=ccomplete#Complete
 
+au BufNewFile,BufRead *.ejs set filetype=html
+au BufNewFile,BufRead *.jade set filetype=html
+
 set guifont=Monaco:h14
 set number
 
@@ -186,8 +193,13 @@ set enc=utf-8
 set fenc=utf-8
 set ff=unix
 
-set list
-set listchars=tab:>-,trail:- " clearly show the diff among tabs and trailing spaces
+set wrap
+set linebreak
+set nolist
+set textwidth=0
+set wrapmargin=0
+" set list
+" set listchars=tab:>-,trail:- " clearly show the diff among tabs and trailing spaces
 set ambw=double " only works if enc=utf-8
 
 " tab to indent
@@ -198,18 +210,28 @@ vmap <s-tab> <gv
 
 map <Esc>[B <Down>
 
-if &term=="xterm" || &term=="xterm-color"
-  :imap <Esc>Oq 1
-  :imap <Esc>Or 2
-  :imap <Esc>Os 3
-  :imap <Esc>Ot 4
-  :imap <Esc>Ou 5
-  :imap <Esc>Ov 6
-  :imap <Esc>Ow 7
-  :imap <Esc>Ox 8
-  :imap <Esc>Oy 9
-  :imap <Esc>Op 0
-endif
+" if &term=="xterm" || &term=="xterm-color"
+  " :imap <Esc>Oq 1
+  " :imap <Esc>Or 2
+  " :imap <Esc>Os 3
+  " :imap <Esc>Ot 4
+  " :imap <Esc>Ou 5
+  " :imap <Esc>Ov 6
+  " :imap <Esc>Ow 7
+  " :imap <Esc>Ox 8
+  " :imap <Esc>Oy 9
+  " :imap <Esc>Op 0
+" endif
+:imap <Esc>Oq 1
+:imap <Esc>Or 2
+:imap <Esc>Os 3
+:imap <Esc>Ot 4
+:imap <Esc>Ou 5
+:imap <Esc>Ov 6
+:imap <Esc>Ow 7
+:imap <Esc>Ox 8
+:imap <Esc>Oy 9
+:imap <Esc>Op 0
 
 """"""""""""""
 " tmux fixes "
@@ -269,3 +291,7 @@ let g:ctrlp_prompt_mappings = {
 " match OverLength /\%81v.\+/
 " set tw=72 fo=cqt wm=0
 autocmd FileType ruby map <F9> :w<CR>:!ruby -c %<CR>
+
+set background=dark
+hi IndentGuidesOdd  guibg=red   ctermbg=3
+hi IndentGuidesEven guibg=green ctermbg=4
