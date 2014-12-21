@@ -51,7 +51,7 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 # Load RVM function
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
 
-alias tmux="TERM=screen-256color-bce tmux"
+# alias tmux="TERM=screen-256color-bce tmux"
 alias tls="tmux list-sessions"
 alias tat="tmux attach -t "
 
@@ -60,7 +60,7 @@ bindkey "^[OH" beginning-of-line
 bindkey "^[OF" end-of-line
 
 # default ruby version
-rvm use 2.1.2
+rvm use 2.1.5
 
 # for checking webpage compressed or not
 function check_compression {
@@ -79,7 +79,7 @@ function check_compression {
 # fi
 
 # export TERM=screen-256color-bce
-export TERM=screen-256color
+export TERM=xterm-256color
 
 # alias tmux="TERM=screen-256color-bce tmux"
 #This line will tell the Go installer where to place the source code before compilation
@@ -111,4 +111,8 @@ elif [[ $platform == 'freebsd' ]]; then
 fi
 
 source $HOME/.iterm2_shell_integration.zsh
-export PATH=$HOME/.rvm/gems/ruby-2.1.2/bin:$HOME/.rvm/gems/ruby-2.1.2@global/bin:$HOME/.rvm/rubies/ruby-2.1.2/bin:$HOME/.rvm/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:$HOME/dev/adt-bundle-mac-x86_64-20140702/sdk/platform-tools:$HOME/dev/adt-bundle-mac-x86_64-20140702/sdk/tools:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$HOME/gosource/bin:$HOME/depot_tools
+export PATH=$HOME/.rvm/gems/ruby-2.1.5/bin:$HOME/.rvm/gems/ruby-2.1.5@global/bin:$HOME/.rvm/rubies/ruby-2.1.5/bin:$HOME/.rvm/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:$HOME/dev/adt-bundle-mac-x86_64-20140702/sdk/platform-tools:$HOME/dev/adt-bundle-mac-x86_64-20140702/sdk/tools:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:$HOME/gosource/bin:$HOME/depot_tools
+PATH=$PATH:$HOME/bin
+# VIMRUNTIME=$HOME/vim
+export PATH="$(brew --prefix homebrew/php/php55)/sbin:$PATH"
+PHP_AUTOCONF="/usr/local/bin/autoconf"
