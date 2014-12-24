@@ -17,6 +17,17 @@ Bundle 'gmarik/vundle'
 " Snippets
 Bundle "http://github.com/gmarik/snipmate.vim.git"
 
+" vim-react-snippets:
+Bundle "linmic/vim-react-snippets"
+
+" SnipMate and its dependencies:
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "garbas/vim-snipmate"
+
+" Other sets of snippets (optional):
+Bundle "honza/vim-snippets"
+
 Bundle "guns/xterm-color-table.vim"
 
 " javascript indenter
@@ -42,6 +53,7 @@ Bundle 'tpope/vim-fugitive'
 
 Bundle "slim-template/vim-slim"
 
+" Bundle 'mxw/vim-jsx'
 Bundle 'mtscout6/vim-cjsx'
 
 " acp
@@ -73,11 +85,6 @@ au BufRead,BufNewFile *.coffee set ft=coffee
 " coffeescript
 Bundle 'kchmck/vim-coffee-script.git'
 
-" hahhah
-" Bundle 'mattn/hahhah-vim.git'
-" set statusline=%<\ %n:%f\ %m%r%y[%{&fo}]%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)%=%{g:HahHah()}
-" set laststatus=2
-
 " Tagbar
 " gem install CoffeeTags
 Bundle 'majutsushi/tagbar'
@@ -108,6 +115,8 @@ Bundle "https://github.com/plasticboy/vim-markdown.git"
 " Bundle "tpope/vim-markdown"
 Bundle 'altercation/vim-colors-solarized.git'
 
+Bundle 'nanotech/jellybeans.vim'
+
 " less
 Bundle 'groenewege/vim-less.git'
 
@@ -117,6 +126,8 @@ Bundle 'git://github.com/miripiruni/CSScomb-for-Vim.git'
 
 Bundle "nathanaelkane/vim-indent-guides"
 
+Bundle 'chilicuil/vim-sml-coursera'
+
 " JSLint {{{
 Bundle 'jslint.vim'
 let $JS_CMD='node'
@@ -125,26 +136,13 @@ let $JS_CMD='node'
 filetype plugin indent on
 syntax on
 
+" colors jellybeans
+set guicolors
 set t_Co=256
-
-if has('gui_running')
-  set guicolors
-endif
-
-" 24 bit
-if !exists('$TMUX')
-  set background=dark
-  let g:solarized_visibility="high"
-  let g:solarized_contrast="high"
-  let g:solarized_termcolors=256
-  colorscheme solarized
-else
-  set background=dark
-  let g:solarized_visibility="high"
-  let g:solarized_contrast="high"
-  let g:solarized_termcolors=256
-  colorscheme solarized
-endif
+let &t_8f="\e[38;2;%ld;%ld;%ldm"
+let &t_8b="\e[48;2;%ld;%ld;%ldm"
+set background=dark
+colorscheme solarized
 
 " indent
 set ai
@@ -212,18 +210,6 @@ vmap <s-tab> <gv
 
 map <Esc>[B <Down>
 
-" if &term=="xterm" || &term=="xterm-color"
-  " :imap <Esc>Oq 1
-  " :imap <Esc>Or 2
-  " :imap <Esc>Os 3
-  " :imap <Esc>Ot 4
-  " :imap <Esc>Ou 5
-  " :imap <Esc>Ov 6
-  " :imap <Esc>Ow 7
-  " :imap <Esc>Ox 8
-  " :imap <Esc>Oy 9
-  " :imap <Esc>Op 0
-" endif
 :imap <Esc>Oq 1
 :imap <Esc>Or 2
 :imap <Esc>Os 3
@@ -245,6 +231,7 @@ if $TERM =~ '^screen-256color'
   map <Esc>OF <End>
   map! <Esc>OF <End>
 endif
+
 if &term =~ '^screen'
   " tmux will send xterm-style keys when its xterm-keys option is on
   execute "set <xUp>=\e[1;*A"
@@ -293,7 +280,7 @@ let g:ctrlp_prompt_mappings = {
 " match OverLength /\%81v.\+/
 " set tw=72 fo=cqt wm=0
 autocmd FileType ruby map <F9> :w<CR>:!ruby -c %<CR>
+" autocmd FileType python map <F8> :w<CR>:!python %<CR>
 
-set background=dark
 hi IndentGuidesOdd  guibg=red   ctermbg=3
 hi IndentGuidesEven guibg=green ctermbg=4
