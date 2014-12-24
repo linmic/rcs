@@ -101,6 +101,7 @@ fi
 
 source $HOME/.iterm2_shell_integration.zsh
 
+ORIGINAL_PATH=$PATH
 # ruby path
 PATH=$HOME/.rvm/gems/ruby-2.1.5/bin:$HOME/.rvm/bin
 # system bin path
@@ -111,6 +112,8 @@ PATH=$PATH:$HOME/bin
 PATH=$PATH:$HOME/dev/adt-bundle-mac-x86_64-20140702/sdk/platform-tools:$HOME/dev/adt-bundle-mac-x86_64-20140702/sdk/tools
 # php path
 PATH="$PATH:$(brew --prefix homebrew/php/php55)/sbin"
+# original path (if exists)
+PATH=$PATH:$ORIGINAL_PATH
 
 # php autoconf
 PHP_AUTOCONF="/usr/local/bin/autoconf"
