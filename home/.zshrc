@@ -111,7 +111,9 @@ PATH=$PATH:$HOME/bin
 # android path
 PATH=$PATH:$HOME/dev/adt-bundle-mac-x86_64-20140702/sdk/platform-tools:$HOME/dev/adt-bundle-mac-x86_64-20140702/sdk/tools
 # php path
-PATH="$PATH:$(brew --prefix homebrew/php/php55)/sbin"
+case $OSTYPE in darwin*)
+  PATH="$PATH:$(brew --prefix homebrew/php/php55)/sbin"
+esac
 # original path (if exists)
 PATH=$PATH:$ORIGINAL_PATH
 
