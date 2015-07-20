@@ -1,36 +1,68 @@
-ST_NAME=`hostname -f`
+if [[ -o login ]]; then
+  if [ x"$TERM" != "xscreen" ]; then
+    # Indicates start of command output. Runs just before command executes.
+    iterm2_before_cmd_executes() {
+      printf "\033]133;C\007"
+    }
 
-# iTerm2 inform terminal that command starts here
-before_cmd_executes() {
-  printf "\033]133;D;$?\007\033]1337;RemoteHost='$USER'@`hostname -f`\007\033]1337;CurrentDir=$PWD\007"
-}
+    iterm2_set_user_var() {
+      printf "\033]1337;SetUserVar=%s=%s\007" "$1" $(printf "%s" "$2" | base64)
+    }
 
-# iTerm2 tell terminal to create a mark at this location
-after_cmd_executes() {
-  printf "\033]133;C\007"
-}
+    # Users can write their own version of this method. It should call
+    # iterm2_set_user_var but not produce any other output.
+    # e.g., iterm2_set_user_var currentDirectory $PWD
+    # Accessible in iTerm2 (in a badge now, elsewhere in the future) as
+    # \(user.currentDirectory).
+    iterm2_print_user_vars() {
+    }
 
-# iTerm2 mark start of prompt
-iterm_prompt_start() {
-  print -Pn "\033]133;A\007"
-}
+    iterm2_print_state_data() {
+      printf "\033]1337;RemoteHost=$USER@$iterm2_hostname\007"
+      printf "\033]1337;CurrentDir=$PWD\007"
+      iterm2_print_user_vars
+    }
 
-# iTerm2 mark end of prompt
-iterm_prompt_end() {
-  print -Pn "\033]133;B\007"
-}
+    # Report return code of command; runs after command finishes but before prompt
+    iterm2_after_cmd_executes() {
+      printf "\033]133;D;$?\007"
+      iterm2_print_state_data
+    }
 
-PS1="%{$(iterm_prompt_start)%}$PS1%{$(iterm_prompt_end)%}"
+    # Mark start of prompt
+    iterm2_prompt_start() {
+      printf "\033]133;A\007"
+    }
 
-precmd() {
-  after_cmd_executes
-}
+    # Mark end of prompt
+    iterm2_prompt_end() {
+      printf "\033]133;B\007"
+    }
 
-preexec() {
-  before_cmd_executes
-}
+    iterm2_precmd() {
+      iterm2_after_cmd_executes
 
-printf "\033]1337;RemoteHost='$USER'@`hostname -f`\007"
-printf "\033]1337;CurrentDir=$PWD\007"
-printf "\033]1337;ShellIntegrationVersion=1\007"
+      # The user or another precmd may have changed PS1 (e.g., powerline-shell).
+      # Ensure that our escape sequences are added back in.
+      ITERM2_SAVED_PS1="$PS1"
+      PS1="%{$(iterm2_prompt_start)%}$ITERM2_SAVED_PS1%{$(iterm2_prompt_end)%}"
+    }
 
+    iterm2_preexec() {
+      PS1="$ITERM2_SAVED_PS1"
+      iterm2_before_cmd_executes
+    }
+
+    # If hostname -f is slow on your system, set iterm2_hostname prior to sourcing this script.
+    [[ -z "$iterm2_hostname" ]] && iterm2_hostname=`hostname -f`
+
+    [[ -z $precmd_functions ]] && precmd_functions=()
+    precmd_functions=($precmd_functions iterm2_precmd)
+
+    [[ -z $preexec_functions ]] && preexec_functions=()
+    preexec_functions=($preexec_functions iterm2_preexec)
+
+    iterm2_print_state_data
+    printf "\033]1337;ShellIntegrationVersion=1\007"
+  fi
+fi

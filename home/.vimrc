@@ -3,7 +3,7 @@
 " Vundle preconfig
 " git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
-lang C
+" lang C
 
 set nocp " no vi
 filetype off
@@ -14,8 +14,27 @@ call vundle#rc()
 " required!
 Bundle 'gmarik/vundle'
 
+Bundle 'mhinz/vim-startify'
+" let g:startify_custom_header = ""
+function! s:filter_header(lines) abort
+    let longest_line   = max(map(copy(a:lines), 'len(v:val)'))
+    let centered_lines = map(copy(a:lines),
+        \ 'repeat(" ", (&columns / 2) - (longest_line / 2)) . v:val')
+    return centered_lines
+endfunction
+" let g:startify_custom_header = s:filter_header(['a', 'bb', 'ccc'])
+let g:startify_custom_header = s:filter_header(map(split(system('fortune | cowsay -d'), '\n'), '"   ". v:val') + ['',''])
+
+Bundle 'https://github.com/gorodinskiy/vim-coloresque.git'
+
 " Snippets
 Bundle "http://github.com/gmarik/snipmate.vim.git"
+
+" auto-pairs
+Bundle "jiangmiao/auto-pairs"
+
+" CSS3 syntax
+Bundle "hail2u/vim-css3-syntax"
 
 " vim-react-snippets:
 Bundle "linmic/vim-react-snippets"
@@ -33,6 +52,8 @@ Bundle "guns/xterm-color-table.vim"
 " javascript indenter
 Bundle 'jiangmiao/simple-javascript-indenter'
 
+" Bundle 'Valloric/YouCompleteMe'
+
 Bundle 'vim-ruby/vim-ruby.git'
 
 Bundle 'bling/vim-airline'
@@ -44,7 +65,7 @@ Bundle 'https://github.com/wavded/vim-stylus.git'
 Bundle 'fatih/vim-go'
 
 " Bundle 'othree/vim-javascript-syntax'
-Bundle 'pangloss/vim-javascript'
+" Bundle 'pangloss/vim-javascript'
 Bundle 'JSON.vim'
 
 " Git integration
@@ -75,6 +96,7 @@ nnoremap <silent> <F1> :NERDTree<CR>
 " othree series
 Bundle 'othree/html5.vim'
 Bundle 'othree/xml.vim'
+Bundle 'othree/yajs.vim'
 
 Bundle 'tpope/vim-rails'
 
@@ -85,64 +107,55 @@ au BufRead,BufNewFile *.coffee set ft=coffee
 " coffeescript
 Bundle 'kchmck/vim-coffee-script.git'
 
-" Tagbar
-" gem install CoffeeTags
-Bundle 'majutsushi/tagbar'
-" nmap <F8> :TagbarToggle<CR>
-" inoremap <c-t> <Esc>:TagbarToggle<CR>
-nmap <c-t> :TagbarToggle<CR>
-" coffeetags --vim-conf >> ~/.vimrc
-if executable('coffeetags')
-  let g:tagbar_type_coffee = {
-        \ 'ctagsbin' : 'coffeetags',
-        \ 'ctagsargs' : '',
-        \ 'kinds' : [
-        \ 'f:functions',
-        \ 'o:object',
-        \ ],
-        \ 'sro' : ".",
-        \ 'kind2scope' : {
-        \ 'f' : 'object',
-        \ 'o' : 'object',
-        \ }
-        \ }
-endif
-
 " handlebars
 Bundle 'nono/vim-handlebars'
 
 Bundle "https://github.com/plasticboy/vim-markdown.git"
-" Bundle "tpope/vim-markdown"
-Bundle 'altercation/vim-colors-solarized.git'
 
+" Themes
+Bundle 'altercation/vim-colors-solarized.git'
 Bundle 'nanotech/jellybeans.vim'
 
 " less
 Bundle 'groenewege/vim-less.git'
 
 " CSScomb
-" Bundle 'linmic/CSScomb-for-Vim.git'
 Bundle 'git://github.com/miripiruni/CSScomb-for-Vim.git'
 
 Bundle "nathanaelkane/vim-indent-guides"
+let g:indent_guides_enable_on_vim_startup = 1
 
 Bundle 'chilicuil/vim-sml-coursera'
 
 " JSLint {{{
-Bundle 'jslint.vim'
-let $JS_CMD='node'
+" Bundle 'jslint.vim'
+" let $JS_CMD='node'
 " }}}
+"
+Bundle 'scrooloose/syntastic'
+" specify javascript checker to eslint
+let g:syntastic_javascript_checkers = ['eslint']
+" auto open location list when errors are found
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_always_populate_loc_list = 1
+
+Bundle 'lfilho/cosco.vim'
+autocmd FileType javascript,css nnoremap <silent> <Leader>; :call cosco#commaOrSemiColon()<CR>
+autocmd FileType javascript,css inoremap <silent> <Leader>; <c-o>:call cosco#commaOrSemiColon()<CR>
+
+" treat es6 as javascript
+au BufNewFile,BufRead *.es6 set filetype=javascript
 
 filetype plugin indent on
 syntax on
 
-" colors jellybeans
-set guicolors
+color jellybeans
+" set noguicolors
 set t_Co=256
 let &t_8f="\e[38;2;%ld;%ld;%ldm"
 let &t_8b="\e[48;2;%ld;%ld;%ldm"
 set background=dark
-colorscheme solarized
+" colorscheme solarized
 
 " indent
 set ai
@@ -178,7 +191,7 @@ set nobk " no backup
 set nowb " no writebackup
 
 set modeline
-set modelines=5
+" set modelines=5
 set foldmethod=marker
 set foldcolumn=2
 " set foldlevel=999 " expand all folds by default
@@ -187,6 +200,8 @@ set fo+=mB " Chinese/Japanese line wrap setting (no space joining lines/wrap fix
 
 set backspace=2
 set expandtab " turn tab into spaces
+
+" indent spaces
 set sw=2 sts=2 ts=2
 
 set enc=utf-8
@@ -282,5 +297,22 @@ let g:ctrlp_prompt_mappings = {
 autocmd FileType ruby map <F9> :w<CR>:!ruby -c %<CR>
 " autocmd FileType python map <F8> :w<CR>:!python %<CR>
 
-hi IndentGuidesOdd  guibg=red   ctermbg=3
-hi IndentGuidesEven guibg=green ctermbg=4
+" inoremap <leader>; <C-o>A;
+set clipboard=unnamed   " yank to the system register
+
+" Don't override register when pasting
+function! RestoreRegister()
+    let @" = s:restore_reg
+    if &clipboard == "unnamed"
+        let @* = s:restore_reg
+    endif
+    return ''
+endfunction
+
+function! s:Repl()
+    let s:restore_reg = @"
+    return "p@=RestoreRegister()\<cr>"
+endfunction
+
+" NB: this supports "rp that replaces the selection by the contents of @r
+vnoremap <silent> <expr> p <sid>Repl()

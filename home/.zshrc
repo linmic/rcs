@@ -3,9 +3,9 @@ ZSH=$HOME/.oh-my-zsh
 platform='unknown'
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
-   platform='linux'
+  platform='linux'
 elif [[ "$unamestr" == 'FreeBSD' ]]; then
-   platform='freebsd'
+  platform='freebsd'
 fi
 
 TZ="Asia/Taipei"
@@ -15,16 +15,16 @@ SAVEHIST=1000
 HOSTNAME="`hostname`"
 PAGER='less'
 
-EDITOR='vim'
+EDITOR='nvim'
 autoload colors zsh/terminfo
 if [[ "$terminfo[colors]" -ge 8 ]]; then
-    colors
+  colors
 fi
 
 for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
-    eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
-    eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
-    (( count = $count + 1 ))
+  eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
+  eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
+  (( count = $count + 1 ))
 done
 
 PR_NO_COLOR="%{$terminfo[sgr0]%}"
@@ -62,26 +62,26 @@ rvm use 2.1.5
 
 # for checking webpage compressed or not
 function check_compression {
-    local unzipped=`curl "$1" --silent --write-out "%{size_download}"  --output /dev/null`
-    local zipped=`curl -H "Accept-Encoding: gzip,deflate" "$1" --silent --write-out "%{size_download}" --output /dev/null`
-    echo "unzipped size: $unzipped, zipped size: $zipped"
+  local unzipped=`curl "$1" --silent --write-out "%{size_download}"  --output /dev/null`
+  local zipped=`curl -H "Accept-Encoding: gzip,deflate" "$1" --silent --write-out "%{size_download}" --output /dev/null`
+  echo "unzipped size: $unzipped, zipped size: $zipped"
 }
 
 # nvm
 . ~/.nvm/nvm.sh
+# nvm use iojs
 
 export TERM=xterm-256color
 
 # alias tmux="TERM=screen-256color-bce tmux"
 #This line will tell the Go installer where to place the source code before compilation
-# export GOROOT=$HOME/gosource
-export GOPATH=$HOME/gosource
+export GOPATH=$HOME/go
 
 #With this line, you choose the architecture of your machine.  
 #Those with 64 bit CPUs should enter "amd64" here.  
-export GOARCH=386
-export GOOS=linux
-export GOBIN=$GOPATH/bin
+# export GOARCH=386
+# export GOOS=linux
+# export GOBIN=$GOPATH/bin
 
 #Include Go binaries in command path
 export PATH=$PATH:$GOBIN
@@ -90,13 +90,20 @@ export PATH=$PATH:$GOBIN
 # -- mysql --
 alias mysql_start='sudo /usr/local/bin/mysqld_safe &'
 alias mysql_stop='sudo /usr/local/bin/mysqladmin shutdown'
+
+# alias git='hub'
 alias winsport_tunnel='ssh g.winsport.la -L8982:localhost:8982 -L8983:localhost:8983'
 alias bb='brew update && brew upgrade'
+alias pg_start='pg_ctl -D /usr/local/var/postgres/data -l /usr/local/var/postgres/server.log start'
+
+alias gitc='git link | pbcopy'
+
+alias vim='nvim'
 
 if [[ $platform == 'linux' ]]; then
-   alias ls='ls --color=auto'
+  alias ls='ls --color=auto'
 elif [[ $platform == 'freebsd' ]]; then
-   alias ls='ls -G'
+  alias ls='ls -G'
 fi
 
 source $HOME/.iterm2_shell_integration.zsh
@@ -119,3 +126,15 @@ PATH=$PATH:$ORIGINAL_PATH
 
 # php autoconf
 PHP_AUTOCONF="/usr/local/bin/autoconf"
+COWPATH="$COWPATH:$HOME/.cowsay"
+# Cow-spoken fortunes every time you open a terminal
+function cowsayfortune {
+  NUMOFCOWS=`cowsay -l | tail -n +2 | wc -w`
+  WHICHCOW=$((RANDOM%$NUMOFCOWS+1))
+  THISCOW=`cowsay -l | tail -n +2 | sed -e 's/\ /\'$'\n/g' | sed $WHICHCOW'q;d'`
+
+  #echo "Selected cow: ${THISCOW}, from ${WHICHCOW}"
+  fortune | cowsay -f $THISCOW -W 100
+}
+
+cowsayfortune
