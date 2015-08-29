@@ -25,6 +25,9 @@ endfunction
 " let g:startify_custom_header = s:filter_header(['a', 'bb', 'ccc'])
 let g:startify_custom_header = s:filter_header(map(split(system('fortune | cowsay -d'), '\n'), '"   ". v:val') + ['',''])
 
+Bundle "rking/ag.vim"
+let g:ag_working_path_mode="r"
+
 Bundle 'https://github.com/gorodinskiy/vim-coloresque.git'
 
 " Snippets
@@ -49,6 +52,16 @@ Bundle "honza/vim-snippets"
 
 Bundle "guns/xterm-color-table.vim"
 
+Bundle 'junegunn/vim-easy-align'
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+" Bundle 'mbbill/undotree'
+" nnoremap <F5> :UndotreeToggle<cr>
+
 " javascript indenter
 Bundle 'jiangmiao/simple-javascript-indenter'
 
@@ -72,10 +85,12 @@ Bundle 'JSON.vim'
 Bundle "git.zip"
 Bundle 'tpope/vim-fugitive'
 
+Bundle 'tpope/vim-sleuth'
+
 Bundle "slim-template/vim-slim"
 
-" Bundle 'mxw/vim-jsx'
-Bundle 'mtscout6/vim-cjsx'
+Bundle 'mxw/vim-jsx'
+" Bundle 'mtscout6/vim-cjsx'
 
 " acp
 Bundle 'AutoComplPop'

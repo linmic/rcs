@@ -15,7 +15,15 @@ SAVEHIST=1000
 HOSTNAME="`hostname`"
 PAGER='less'
 
-EDITOR='nvim'
+export EDITOR="vim"
+export GIT_EDITOR="vim"
+alias vi="vim"
+
+# fix keybindings
+bindkey -e # for emacs
+# bindkey "^[OH" beginning-of-line
+# bindkey "^[OF" end-of-line
+
 autoload colors zsh/terminfo
 if [[ "$terminfo[colors]" -ge 8 ]]; then
   colors
@@ -53,15 +61,11 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 alias tls="tmux list-sessions"
 alias tat="tmux attach -t "
 
-# fix keybindings
-bindkey "^[OH" beginning-of-line
-bindkey "^[OF" end-of-line
-
 # default ruby version
 rvm use 2.1.5
 
 # for checking webpage compressed or not
-function check_compression {
+function checkwebzip {
   local unzipped=`curl "$1" --silent --write-out "%{size_download}"  --output /dev/null`
   local zipped=`curl -H "Accept-Encoding: gzip,deflate" "$1" --silent --write-out "%{size_download}" --output /dev/null`
   echo "unzipped size: $unzipped, zipped size: $zipped"
@@ -69,7 +73,7 @@ function check_compression {
 
 # nvm
 . ~/.nvm/nvm.sh
-# nvm use iojs
+nvm use stable
 
 export TERM=xterm-256color
 
@@ -86,13 +90,12 @@ export GOPATH=$HOME/go
 #Include Go binaries in command path
 export PATH=$PATH:$GOBIN
 
-# aliases
+# aliases 
 # -- mysql --
 alias mysql_start='sudo /usr/local/bin/mysqld_safe &'
 alias mysql_stop='sudo /usr/local/bin/mysqladmin shutdown'
 
-# alias git='hub'
-alias winsport_tunnel='ssh g.winsport.la -L8982:localhost:8982 -L8983:localhost:8983'
+# -- lazy aliases --
 alias bb='brew update && brew upgrade'
 alias pg_start='pg_ctl -D /usr/local/var/postgres/data -l /usr/local/var/postgres/server.log start'
 
@@ -110,7 +113,7 @@ source $HOME/.iterm2_shell_integration.zsh
 
 ORIGINAL_PATH=$PATH
 # ruby path
-PATH=$HOME/.rvm/gems/ruby-2.1.5/bin:$HOME/.rvm/bin
+PATH=$HOME/.rvm/gems/ruby-2.2.3/bin:$HOME/.rvm/bin
 # system bin path
 PATH=$PATH:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/sbin:/opt/X11/bin
 # user bin path
@@ -126,6 +129,7 @@ PATH=$PATH:$ORIGINAL_PATH
 
 # php autoconf
 PHP_AUTOCONF="/usr/local/bin/autoconf"
+
 COWPATH="$COWPATH:$HOME/.cowsay"
 # Cow-spoken fortunes every time you open a terminal
 function cowsayfortune {

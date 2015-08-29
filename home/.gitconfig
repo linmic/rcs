@@ -1,6 +1,6 @@
 [user]
   name = Linmic
-  email = linmic_lin@htc.com
+  email = linmicya@gmail.com
 [alias]
   di = diff
   co = checkout
@@ -36,3 +36,7 @@
   tool = icdiff
 [difftool "icdiff"]
   cmd = icdiff $LOCAL $REMOTE
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
