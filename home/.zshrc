@@ -4,6 +4,8 @@ platform='unknown'
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
   platform='linux'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+  platform='osx'
 elif [[ "$unamestr" == 'FreeBSD' ]]; then
   platform='freebsd'
 fi
@@ -62,7 +64,7 @@ alias tls="tmux list-sessions"
 alias tat="tmux attach -t "
 
 # default ruby version
-rvm use 2.1.5
+rvm use rvm use ruby-2.2.3
 
 # for checking webpage compressed or not
 function checkwebzip {
@@ -103,9 +105,9 @@ alias gitc='git link | pbcopy'
 
 alias vim='nvim'
 
-if [[ $platform == 'linux' ]]; then
+if [ $platform == 'linux' ] || [ $platform == 'osx' ]; then
   alias ls='ls --color=auto'
-elif [[ $platform == 'freebsd' ]]; then
+elif [ $platform == 'freebsd' ]; then
   alias ls='ls -G'
 fi
 
@@ -126,6 +128,9 @@ case $OSTYPE in darwin*)
 esac
 # original path (if exists)
 PATH=$PATH:$ORIGINAL_PATH
+
+# coreutils
+PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
 # php autoconf
 PHP_AUTOCONF="/usr/local/bin/autoconf"
