@@ -130,7 +130,7 @@ esac
 PATH=$PATH:$ORIGINAL_PATH
 
 # coreutils
-PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+PATH=$PATH:/usr/local/opt/coreutils/libexec/gnubin
 
 # php autoconf
 PHP_AUTOCONF="/usr/local/bin/autoconf"
