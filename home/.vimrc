@@ -17,10 +17,10 @@ Bundle 'gmarik/vundle'
 Bundle 'mhinz/vim-startify'
 " let g:startify_custom_header = ""
 function! s:filter_header(lines) abort
-    let longest_line   = max(map(copy(a:lines), 'len(v:val)'))
-    let centered_lines = map(copy(a:lines),
-        \ 'repeat(" ", (&columns / 2) - (longest_line / 2)) . v:val')
-    return centered_lines
+  let longest_line   = max(map(copy(a:lines), 'len(v:val)'))
+  let centered_lines = map(copy(a:lines),
+    \ 'repeat(" ", (&columns / 2) - (longest_line / 2)) . v:val')
+  return centered_lines
 endfunction
 " let g:startify_custom_header = s:filter_header(['a', 'bb', 'ccc'])
 let g:startify_custom_header = s:filter_header(map(split(system('fortune | cowsay -d'), '\n'), '"   ". v:val') + ['',''])
@@ -317,16 +317,16 @@ set clipboard=unnamed   " yank to the system register
 
 " Don't override register when pasting
 function! RestoreRegister()
-    let @" = s:restore_reg
-    if &clipboard == "unnamed"
-        let @* = s:restore_reg
-    endif
-    return ''
+  let @" = s:restore_reg
+  if &clipboard == "unnamed"
+    let @* = s:restore_reg
+  endif
+  return ''
 endfunction
 
 function! s:Repl()
-    let s:restore_reg = @"
-    return "p@=RestoreRegister()\<cr>"
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<cr>"
 endfunction
 
 " NB: this supports "rp that replaces the selection by the contents of @r
