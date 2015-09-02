@@ -116,6 +116,8 @@ source $HOME/.iterm2_shell_integration.zsh
 ORIGINAL_PATH=$PATH
 # ruby path
 PATH=$HOME/.rvm/gems/ruby-2.2.3/bin:$HOME/.rvm/bin
+# coreutils
+PATH=$PATH:/usr/local/opt/coreutils/libexec/gnubin
 # system bin path
 PATH=$PATH:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/sbin:/opt/X11/bin
 # user bin path
@@ -128,9 +130,6 @@ case $OSTYPE in darwin*)
 esac
 # original path (if exists)
 PATH=$PATH:$ORIGINAL_PATH
-
-# coreutils
-PATH=$PATH:/usr/local/opt/coreutils/libexec/gnubin
 
 # php autoconf
 PHP_AUTOCONF="/usr/local/bin/autoconf"
