@@ -17,9 +17,9 @@ SAVEHIST=1000
 HOSTNAME="`hostname`"
 PAGER='less'
 
-export EDITOR="vim"
-export GIT_EDITOR="vim"
-alias vi="vim"
+export EDITOR="nvim"
+export GIT_EDITOR="nvim"
+alias vi="nvim"
 
 # fix keybindings
 bindkey -e # for emacs
@@ -64,7 +64,7 @@ alias tls="tmux list-sessions"
 alias tat="tmux attach -t "
 
 # default ruby version
-rvm use rvm use ruby-2.2.3
+rvm use ruby-2.2.3
 
 # for checking webpage compressed or not
 function checkwebzip {
@@ -73,9 +73,13 @@ function checkwebzip {
   echo "unzipped size: $unzipped, zipped size: $zipped"
 }
 
+function codehighlight {
+  `highlight --syntax=js -O rtf "$1" | pbcopy`
+}
+
 # nvm
 . ~/.nvm/nvm.sh
-nvm use stable
+nvm use 4.2.1
 
 export TERM=xterm-256color
 
