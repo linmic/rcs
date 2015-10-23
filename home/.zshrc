@@ -107,7 +107,9 @@ alias pg_start='pg_ctl -D /usr/local/var/postgres/data -l /usr/local/var/postgre
 
 alias gitc='git link | pbcopy'
 
-alias vim='nvim'
+if type "nvim" > /dev/null; then
+  alias vim='nvim'
+fi
 
 if [ $platform == 'linux' ] || [ $platform == 'osx' ]; then
   alias ls='ls --color=auto'
