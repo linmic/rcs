@@ -33,6 +33,8 @@ Bundle 'https://github.com/gorodinskiy/vim-coloresque.git'
 " Snippets
 Bundle "http://github.com/gmarik/snipmate.vim.git"
 
+Bundle "digitaltoad/vim-jade"
+
 " auto-pairs
 Bundle "jiangmiao/auto-pairs"
 
