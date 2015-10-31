@@ -17,9 +17,9 @@ SAVEHIST=1000
 HOSTNAME="`hostname`"
 PAGER='less'
 
-export EDITOR="nvim"
-export GIT_EDITOR="nvim"
-alias vi="nvim"
+export EDITOR="vim"
+export GIT_EDITOR="vim"
+alias vi="vim"
 
 # fix keybindings
 bindkey -e # for emacs
@@ -107,9 +107,9 @@ alias pg_start='pg_ctl -D /usr/local/var/postgres/data -l /usr/local/var/postgre
 
 alias gitc='git link | pbcopy'
 
-if type "nvim" > /dev/null; then
-  alias vim='nvim'
-fi
+#if type "nvim" > /dev/null; then
+#  alias vim='nvim'
+#fi
 
 if [ $platform == 'linux' ] || [ $platform == 'osx' ]; then
   alias ls='ls --color=auto'
