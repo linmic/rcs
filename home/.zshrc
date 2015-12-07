@@ -79,7 +79,7 @@ function codehighlight {
 
 # nvm
 . ~/.nvm/nvm.sh
-nvm use 4.2.1
+nvm use 4.2.2
 
 export TERM=xterm-256color
 
@@ -140,6 +140,9 @@ PATH=$PATH:$ORIGINAL_PATH
 # php autoconf
 PHP_AUTOCONF="/usr/local/bin/autoconf"
 
+source ./zsh-git-prompt/zshrc.sh
+PROMPT='%B%m%~%b$(git_super_status) %# '
+
 COWPATH="$COWPATH:$HOME/.cowsay"
 # Cow-spoken fortunes every time you open a terminal
 function cowsayfortune {
@@ -152,3 +155,6 @@ function cowsayfortune {
 }
 
 cowsayfortune
+PATH=$PATH:/usr/local/sbin
+PHP_AUTOCONF="/usr/local/bin/autoconf"
+source ~/.bash_aliases
