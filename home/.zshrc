@@ -79,7 +79,7 @@ function codehighlight {
 
 # nvm
 . ~/.nvm/nvm.sh
-nvm use 4.2.1
+nvm use 4.2.4
 
 export TERM=xterm-256color
 
@@ -110,9 +110,8 @@ alias gitc='git link | pbcopy'
 #if type "nvim" > /dev/null; then
 #  alias vim='nvim'
 #fi
-
 if [ $platform == 'linux' ] || [ $platform == 'osx' ]; then
-  alias ls='ls --color=auto'
+  # alias ls='ls --color=auto'
 elif [ $platform == 'freebsd' ]; then
   alias ls='ls -G'
 fi
@@ -121,7 +120,7 @@ source $HOME/.iterm2_shell_integration.zsh
 
 ORIGINAL_PATH=$PATH
 # ruby path
-PATH=$HOME/.rvm/gems/ruby-2.2.3/bin:$HOME/.rvm/bin
+PATH=$HOME/.rvm/gems/ruby-2.2.3/bin:$HOME/.rvm/bin:$PATH
 # coreutils
 PATH=$PATH:/usr/local/opt/coreutils/libexec/gnubin
 # system bin path
@@ -140,6 +139,9 @@ PATH=$PATH:$ORIGINAL_PATH
 # php autoconf
 PHP_AUTOCONF="/usr/local/bin/autoconf"
 
+# source ./zsh-git-prompt/zshrc.sh
+# PROMPT='%B%m%~%b$(git_super_status) %# '
+
 COWPATH="$COWPATH:$HOME/.cowsay"
 # Cow-spoken fortunes every time you open a terminal
 function cowsayfortune {
@@ -152,3 +154,6 @@ function cowsayfortune {
 }
 
 cowsayfortune
+PATH=$PATH:/usr/local/sbin
+PHP_AUTOCONF="/usr/local/bin/autoconf"
+source ~/.bash_aliases

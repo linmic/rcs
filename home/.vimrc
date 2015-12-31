@@ -30,6 +30,27 @@ let g:ag_working_path_mode="r"
 
 Bundle 'https://github.com/gorodinskiy/vim-coloresque.git'
 
+Bundle 'easymotion/vim-easymotion'
+map <Leader> <Plug>(easymotion-prefix)
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Bi-directional find motion
+" " Jump to anywhere you want with minimal keystrokes, with just one key
+" binding.
+" " `s{char}{label}`
+nmap s <Plug>(easymotion-s)
+" " or
+" " `s{char}{char}{label}`
+" " Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-s2)
+"
+"" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
 " Snippets
 Bundle "http://github.com/gmarik/snipmate.vim.git"
 
@@ -54,6 +75,8 @@ Bundle "honza/vim-snippets"
 
 Bundle "guns/xterm-color-table.vim"
 
+Bundle "2072/PHP-Indenting-for-VIm"
+
 Bundle 'junegunn/vim-easy-align'
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 vmap <Enter> <Plug>(EasyAlign)
@@ -65,9 +88,7 @@ nmap ga <Plug>(EasyAlign)
 " nnoremap <F5> :UndotreeToggle<cr>
 
 " javascript indenter
-Bundle 'jiangmiao/simple-javascript-indenter'
-
-" Bundle 'Valloric/YouCompleteMe'
+" Bundle 'jiangmiao/simple-javascript-indenter'
 
 Bundle 'vim-ruby/vim-ruby.git'
 
@@ -80,7 +101,7 @@ Bundle 'https://github.com/wavded/vim-stylus.git'
 Bundle 'fatih/vim-go'
 
 " Bundle 'othree/vim-javascript-syntax'
-" Bundle 'pangloss/vim-javascript'
+Bundle 'pangloss/vim-javascript'
 Bundle 'JSON.vim'
 
 " Git integration
@@ -114,6 +135,8 @@ nnoremap <silent> <F1> :NERDTree<CR>
 Bundle 'othree/html5.vim'
 Bundle 'othree/xml.vim'
 Bundle 'othree/yajs.vim'
+
+Bundle 'ciaranm/detectindent'
 
 Bundle 'tpope/vim-rails'
 
@@ -171,7 +194,7 @@ color jellybeans
 set t_Co=256
 " let &t_8f="\e[38;2;%ld;%ld;%ldm"
 " let &t_8b="\e[48;2;%ld;%ld;%ldm"
-set background=dark
+" set background=dark
 " colorscheme solarized
 
 " indent
@@ -211,7 +234,7 @@ set modeline
 " set modelines=5
 set foldmethod=marker
 set foldcolumn=2
-" set foldlevel=999 " expand all folds by default
+set foldlevel=999 " expand all folds by default
 
 set fo+=mB " Chinese/Japanese line wrap setting (no space joining lines/wrap fix)
 
