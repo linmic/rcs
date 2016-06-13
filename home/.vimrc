@@ -56,6 +56,12 @@ Bundle "http://github.com/gmarik/snipmate.vim.git"
 
 Bundle "digitaltoad/vim-jade"
 
+Bundle "mattn/emmet-vim"
+let g:user_emmet_leader_key=','
+
+Bundle "nginx.vim"
+au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/*,/usr/local/etc/nginx/sites-available/* if &ft == '' | setfiletype nginx | endif
+
 " auto-pairs
 Bundle "jiangmiao/auto-pairs"
 
@@ -69,6 +75,8 @@ Bundle "linmic/vim-react-snippets"
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
+
+Plugin 'editorconfig/editorconfig-vim'
 
 " Other sets of snippets (optional):
 Bundle "honza/vim-snippets"
@@ -104,6 +112,9 @@ Bundle 'fatih/vim-go'
 Bundle 'pangloss/vim-javascript'
 Bundle 'JSON.vim'
 
+Bundle 'othree/csscomplete.vim'
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS noci
+
 " Git integration
 Bundle "git.zip"
 Bundle 'tpope/vim-fugitive'
@@ -120,7 +131,7 @@ Bundle 'AutoComplPop'
 
 " Command-T
 " Bundle "git://git.wincent.com/command-t.git"
-Bundle "wincent/Command-T"
+Bundle "wincent/command-t"
 let g:CommandTMatchWindowAtTop=1 " show window at top
 
 " nerd series {{{
@@ -160,7 +171,12 @@ Bundle 'nanotech/jellybeans.vim'
 Bundle 'groenewege/vim-less.git'
 
 " CSScomb
-Bundle 'git://github.com/miripiruni/CSScomb-for-Vim.git'
+" Bundle 'git://github.com/miripiruni/CSScomb-for-Vim.git'
+Bundle 'csscomb/vim-csscomb'
+" Map bc to run CSScomb. bc stands for beautify css
+autocmd FileType css noremap <buffer> <leader>bc :CSScomb<CR>
+" Automatically comb your CSS on save
+" autocmd BufWritePre,FileWritePre *.css,*.less,*.scss,*.sass silent! :CSScomb
 
 Bundle "nathanaelkane/vim-indent-guides"
 let g:indent_guides_enable_on_vim_startup = 1
@@ -189,7 +205,11 @@ au BufNewFile,BufRead *.es6 set filetype=javascript
 filetype plugin indent on
 syntax on
 
-color jellybeans
+" dracula theme
+Plugin 'dracula/vim'
+color dracula
+
+" color jellybeans 
 " set noguicolors
 set t_Co=256
 " let &t_8f="\e[38;2;%ld;%ld;%ldm"
