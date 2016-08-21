@@ -2,6 +2,9 @@
 
 " Vundle preconfig
 " git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+"
+" Italic fonts in iTerm2, tmux, and vim
+" https://alexpearce.me/2014/05/italics-in-iterm2-vim-tmux/
 
 " lang C
 
@@ -14,6 +17,7 @@ call vundle#rc()
 " required!
 Bundle 'gmarik/vundle'
 
+Plugin 'L9'
 Bundle 'mhinz/vim-startify'
 " let g:startify_custom_header = ""
 function! s:filter_header(lines) abort
@@ -28,7 +32,8 @@ let g:startify_custom_header = s:filter_header(map(split(system('fortune | cowsa
 Bundle "rking/ag.vim"
 let g:ag_working_path_mode="r"
 
-Bundle 'https://github.com/gorodinskiy/vim-coloresque.git'
+" Bundle 'https://github.com/gorodinskiy/vim-coloresque.git'
+Bundle 'ap/vim-css-color'
 
 Bundle 'easymotion/vim-easymotion'
 map <Leader> <Plug>(easymotion-prefix)
@@ -127,12 +132,15 @@ Bundle 'mxw/vim-jsx'
 " Bundle 'mtscout6/vim-cjsx'
 
 " acp
-Bundle 'AutoComplPop'
+" Bundle 'AutoComplPop'
+" Bundle "othree/vim-autocomplpop"
+" Bundle "ervandew/supertab"
+Bundle "Valloric/YouCompleteMe"
 
 " Command-T
 " Bundle "git://git.wincent.com/command-t.git"
-Bundle "wincent/command-t"
-let g:CommandTMatchWindowAtTop=1 " show window at top
+" Bundle "wincent/command-t"
+" let g:CommandTMatchWindowAtTop=1 " show window at top
 
 " nerd series {{{
 Bundle 'scrooloose/nerdcommenter'
@@ -179,7 +187,10 @@ autocmd FileType css noremap <buffer> <leader>bc :CSScomb<CR>
 " autocmd BufWritePre,FileWritePre *.css,*.less,*.scss,*.sass silent! :CSScomb
 
 Bundle "nathanaelkane/vim-indent-guides"
-let g:indent_guides_enable_on_vim_startup = 1
+" let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black ctermbg=240
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgray ctermbg=238
 
 Bundle 'chilicuil/vim-sml-coursera'
 
@@ -209,13 +220,30 @@ syntax on
 Plugin 'dracula/vim'
 color dracula
 
-" color jellybeans 
-" set noguicolors
-set t_Co=256
-" let &t_8f="\e[38;2;%ld;%ld;%ldm"
-" let &t_8b="\e[48;2;%ld;%ld;%ldm"
-" set background=dark
-" colorscheme solarized
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+  if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+
+Bundle 'joshdick/onedark.vim'
+set background=dark
+" Note: All options should be set before the colorscheme onedark line in your ~/.vimrc.
+let g:onedark_terminal_italics = 1
+colorscheme onedark
+
+hi Pmenu ctermfg=white ctermbg=242 guifg=#ffffff guibg=#6c6c6c
+hi PmenuSel ctermfg=white ctermbg=32 guifg=#ffffff guibg=#0087d7
 
 " indent
 set ai
@@ -318,6 +346,7 @@ endif
 " git clone https://github.com/kien/ctrlp.vim.git bundle/ctrlp.vim
 " ctrlp: {{{
 "
+Bundle "ctrlpvim/ctrlp.vim"
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 let g:ctrlp_map = '<c-p>'
@@ -347,6 +376,18 @@ let g:ctrlp_prompt_mappings = {
   \ 'AcceptSelection("e")': [],
   \ 'AcceptSelection("t")': ['<cr>', '<c-m>'],
   \ }
+
+hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+
+" let g:ctrlp_buffer_func = { 'enter': 'BrightHighlightOn', 'exit':  'BrightHighlightOff', }
+
+" function BrightHighlightOn()
+  " hi CursorLine guibg=darkred
+" endfunction
+
+" function BrightHighlightOff()
+  " hi CursorLine guibg=#191919
+" endfunction
 
 " }}}
 

@@ -17,9 +17,14 @@ SAVEHIST=1000
 HOSTNAME="`hostname`"
 PAGER='less'
 
-export EDITOR="vim"
-export GIT_EDITOR="vim"
-alias vi="vim"
+# export EDITOR="vim"
+# export GIT_EDITOR="vim"
+export EDITOR='nvim'
+export GIT_EDITOR='nvim'
+export vi='nvim'
+export vim='nvim'
+
+alias vim='nvim'
 
 # fix keybindings
 bindkey -e # for emacs
@@ -60,7 +65,6 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 # Load RVM function
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
 
-# alias tmux="TERM=screen-256color-bce tmux"
 alias tls="tmux list-sessions"
 alias tat="tmux attach -t "
 
@@ -80,11 +84,10 @@ function codehighlight {
 
 # nvm
 . ~/.nvm/nvm.sh
-nvm use 4.2.4
+nvm use 6.3
 
-export TERM=xterm-256color
+export TERM=xterm-256color-italic
 
-# alias tmux="TERM=screen-256color-bce tmux"
 #This line will tell the Go installer where to place the source code before compilation
 export GOPATH=$HOME/go
 
@@ -108,9 +111,6 @@ alias pg_start='pg_ctl -D /usr/local/var/postgres/data -l /usr/local/var/postgre
 
 alias gitc='git link | pbcopy'
 
-#if type "nvim" > /dev/null; then
-#  alias vim='nvim'
-#fi
 if [ $platform == 'linux' ] || [ $platform == 'osx' ]; then
   # alias ls='ls --color=auto'
 elif [ $platform == 'freebsd' ]; then
