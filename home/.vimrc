@@ -113,9 +113,11 @@ Bundle 'https://github.com/wavded/vim-stylus.git'
 " go
 Bundle 'fatih/vim-go'
 
-" Bundle 'othree/vim-javascript-syntax'
+" javascript
 Bundle 'pangloss/vim-javascript'
-Bundle 'JSON.vim'
+Bundle 'mxw/vim-jsx'
+let g:jsx_ext_required = 0
+" Bundle 'JSON.vim'
 
 Bundle 'othree/csscomplete.vim'
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS noci
@@ -127,9 +129,6 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-sleuth'
 
 Bundle "slim-template/vim-slim"
-
-Bundle 'mxw/vim-jsx'
-" Bundle 'mtscout6/vim-cjsx'
 
 " acp
 " Bundle 'AutoComplPop'
@@ -241,6 +240,8 @@ set background=dark
 " Note: All options should be set before the colorscheme onedark line in your ~/.vimrc.
 let g:onedark_terminal_italics = 1
 colorscheme onedark
+Bundle 'joshdick/airline-onedark.vim'
+let g:airline_theme='onedark'
 
 hi Pmenu ctermfg=white ctermbg=242 guifg=#ffffff guibg=#6c6c6c
 hi PmenuSel ctermfg=white ctermbg=32 guifg=#ffffff guibg=#0087d7
