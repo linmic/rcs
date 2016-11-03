@@ -3,6 +3,9 @@
 " Vundle preconfig
 " git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 "
+" Bundle
+" curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"
 " Italic fonts in iTerm2, tmux, and vim
 " https://alexpearce.me/2014/05/italics-in-iterm2-vim-tmux/
 
@@ -17,7 +20,9 @@ call vundle#rc()
 " required!
 Bundle 'gmarik/vundle'
 
-Plugin 'L9'
+" call plug#begin('~/.vim/plugged')
+
+Bundle 'L9'
 Bundle 'mhinz/vim-startify'
 " let g:startify_custom_header = ""
 function! s:filter_header(lines) abort
@@ -81,7 +86,9 @@ Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
 
-Plugin 'editorconfig/editorconfig-vim'
+" coding style consistency tools, it's good for open source project
+" Bundle 'editorconfig/editorconfig-vim'
+" Bundle 'tpope/vim-sleuth'
 
 " Other sets of snippets (optional):
 Bundle "honza/vim-snippets"
@@ -125,8 +132,6 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS noci
 " Git integration
 Bundle "git.zip"
 Bundle 'tpope/vim-fugitive'
-
-Bundle 'tpope/vim-sleuth'
 
 Bundle "slim-template/vim-slim"
 
@@ -216,7 +221,7 @@ filetype plugin indent on
 syntax on
 
 " dracula theme
-Plugin 'dracula/vim'
+Bundle 'dracula/vim'
 color dracula
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
@@ -240,8 +245,9 @@ set background=dark
 " Note: All options should be set before the colorscheme onedark line in your ~/.vimrc.
 let g:onedark_terminal_italics = 1
 colorscheme onedark
-Bundle 'joshdick/airline-onedark.vim'
-let g:airline_theme='onedark'
+" Bundle 'joshdick/airline-onedark.vim'
+" let g:airline_theme='onedark'
+" call plug#end()
 
 hi Pmenu ctermfg=white ctermbg=242 guifg=#ffffff guibg=#6c6c6c
 hi PmenuSel ctermfg=white ctermbg=32 guifg=#ffffff guibg=#0087d7
@@ -256,7 +262,7 @@ let g:SimpleJsIndenter_BriefMode = 1
 set hlsearch " search highlighting
 
 au BufRead,BufNewFile *.mako set ft=mako syntax=html
-au BufRead,BufNewFile *.css set ft=css syntax=css3
+" au BufRead,BufNewFile *.css set ft=css syntax=css3
 au BufRead,BufNewFile *.conf set ft=sh syntax=sh
 
 au FileType python set omnifunc=pythoncomplete#Complete nosi
