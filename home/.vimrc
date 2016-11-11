@@ -13,17 +13,12 @@
 
 set nocp " no vi
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
 
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
+" start using plug
+call plug#begin('~/.config/nvim/plugged')
 
-" call plug#begin('~/.vim/plugged')
-
-Bundle 'L9'
-Bundle 'mhinz/vim-startify'
+Plug 'L9'
+Plug 'mhinz/vim-startify'
 " let g:startify_custom_header = ""
 function! s:filter_header(lines) abort
   let longest_line   = max(map(copy(a:lines), 'len(v:val)'))
@@ -34,13 +29,13 @@ endfunction
 " let g:startify_custom_header = s:filter_header(['a', 'bb', 'ccc'])
 let g:startify_custom_header = s:filter_header(map(split(system('fortune | cowsay -d'), '\n'), '"   ". v:val') + ['',''])
 
-Bundle "rking/ag.vim"
+Plug 'rking/ag.vim'
 let g:ag_working_path_mode="r"
 
-" Bundle 'https://github.com/gorodinskiy/vim-coloresque.git'
-Bundle 'ap/vim-css-color'
+" Plug 'https://github.com/gorodinskiy/vim-coloresque.git'
+Plug 'ap/vim-css-color'
 
-Bundle 'easymotion/vim-easymotion'
+Plug 'easymotion/vim-easymotion'
 map <Leader> <Plug>(easymotion-prefix)
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
@@ -62,155 +57,155 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
 " Snippets
-Bundle "http://github.com/gmarik/snipmate.vim.git"
+Plug 'gmarik/snipmate.vim'
 
-Bundle "digitaltoad/vim-jade"
+Plug 'digitaltoad/vim-jade'
 
-Bundle "mattn/emmet-vim"
+Plug 'mattn/emmet-vim'
 let g:user_emmet_leader_key=','
 
-Bundle "nginx.vim"
+Plug 'nginx.vim'
 au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/*,/usr/local/etc/nginx/sites-available/* if &ft == '' | setfiletype nginx | endif
 
 " auto-pairs
-Bundle "jiangmiao/auto-pairs"
+Plug 'jiangmiao/auto-pairs'
 
 " CSS3 syntax
-Bundle "hail2u/vim-css3-syntax"
+Plug 'hail2u/vim-css3-syntax'
 
 " vim-react-snippets:
-Bundle "linmic/vim-react-snippets"
+Plug 'linmic/vim-react-snippets'
 
 " SnipMate and its dependencies:
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "garbas/vim-snipmate"
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
 
 " coding style consistency tools, it's good for open source project
-" Bundle 'editorconfig/editorconfig-vim'
-" Bundle 'tpope/vim-sleuth'
+" Plug 'editorconfig/editorconfig-vim'
+" Plug 'tpope/vim-sleuth'
 
 " Other sets of snippets (optional):
-Bundle "honza/vim-snippets"
+Plug 'honza/vim-snippets'
 
-Bundle "guns/xterm-color-table.vim"
+Plug 'guns/xterm-color-table.vim'
 
-Bundle "2072/PHP-Indenting-for-VIm"
+Plug '2072/PHP-Indenting-for-VIm'
 
-Bundle 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-easy-align'
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 vmap <Enter> <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-" Bundle 'mbbill/undotree'
+" Plug 'mbbill/undotree'
 " nnoremap <F5> :UndotreeToggle<cr>
 
 " javascript indenter
-" Bundle 'jiangmiao/simple-javascript-indenter'
+" Plug 'jiangmiao/simple-javascript-indenter'
 
-Bundle 'vim-ruby/vim-ruby.git'
+Plug 'vim-ruby/vim-ruby'
 
-Bundle 'bling/vim-airline'
+Plug 'bling/vim-airline'
 
 " stylus
-Bundle 'https://github.com/wavded/vim-stylus.git'
+Plug 'https://github.com/wavded/vim-stylus.git'
 
 " go
-Bundle 'fatih/vim-go'
+Plug 'fatih/vim-go'
 
 " javascript
-Bundle 'pangloss/vim-javascript'
-Bundle 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 let g:jsx_ext_required = 0
-" Bundle 'JSON.vim'
+" Plug 'JSON.vim'
 
-Bundle 'othree/csscomplete.vim'
+Plug 'othree/csscomplete.vim'
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS noci
 
 " Git integration
-Bundle "git.zip"
-Bundle 'tpope/vim-fugitive'
+Plug 'git.zip'
+Plug 'tpope/vim-fugitive'
 
-Bundle "slim-template/vim-slim"
+Plug 'slim-template/vim-slim'
 
 " acp
-" Bundle 'AutoComplPop'
-" Bundle "othree/vim-autocomplpop"
-" Bundle "ervandew/supertab"
-Bundle "Valloric/YouCompleteMe"
+" Plug 'AutoComplPop'
+" Plug 'othree/vim-autocomplpop'
+" Plug 'ervandew/supertab'
+Plug 'Valloric/YouCompleteMe'
 
 " Command-T
-" Bundle "git://git.wincent.com/command-t.git"
-" Bundle "wincent/command-t"
+" Plug 'git://git.wincent.com/command-t.git'
+" Plug 'wincent/command-t'
 " let g:CommandTMatchWindowAtTop=1 " show window at top
 
 " nerd series {{{
-Bundle 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 let NERDSpaceDelims = 1
 let mapleader = ','
-Bundle 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 nnoremap <silent> <F1> :NERDTree<CR>
 " }}}
 
 " othree series
-Bundle 'othree/html5.vim'
-Bundle 'othree/xml.vim'
-Bundle 'othree/yajs.vim'
+Plug 'othree/html5.vim'
+Plug 'othree/xml.vim'
+Plug 'othree/yajs.vim'
 
-Bundle 'ciaranm/detectindent'
+Plug 'ciaranm/detectindent'
 
-Bundle 'tpope/vim-rails'
+Plug 'tpope/vim-rails'
 
 " coffeescript
-Bundle 'othree/coffee-check.vim'
+Plug 'othree/coffee-check.vim'
 au BufRead,BufNewFile *.coffee set ft=coffee
 
 " coffeescript
-Bundle 'kchmck/vim-coffee-script.git'
+Plug 'kchmck/vim-coffee-script'
 
 " handlebars
-Bundle 'nono/vim-handlebars'
+Plug 'nono/vim-handlebars'
 
-Bundle "https://github.com/plasticboy/vim-markdown.git"
+Plug 'plasticboy/vim-markdown'
 
 " Themes
-Bundle 'altercation/vim-colors-solarized.git'
-Bundle 'nanotech/jellybeans.vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'nanotech/jellybeans.vim'
 
 " less
-Bundle 'groenewege/vim-less.git'
+Plug 'groenewege/vim-less'
 
 " CSScomb
-" Bundle 'git://github.com/miripiruni/CSScomb-for-Vim.git'
-Bundle 'csscomb/vim-csscomb'
+" Plug 'git://github.com/miripiruni/CSScomb-for-Vim.git'
+Plug 'csscomb/vim-csscomb'
 " Map bc to run CSScomb. bc stands for beautify css
 autocmd FileType css noremap <buffer> <leader>bc :CSScomb<CR>
 " Automatically comb your CSS on save
 " autocmd BufWritePre,FileWritePre *.css,*.less,*.scss,*.sass silent! :CSScomb
 
-Bundle "nathanaelkane/vim-indent-guides"
+Plug 'nathanaelkane/vim-indent-guides'
 " let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black ctermbg=240
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgray ctermbg=238
 
-Bundle 'chilicuil/vim-sml-coursera'
+Plug 'chilicuil/vim-sml-coursera'
 
 " JSLint {{{
-" Bundle 'jslint.vim'
+" Plug 'jslint.vim'
 " let $JS_CMD='node'
 " }}}
 "
-Bundle 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 " specify javascript checker to eslint
 let g:syntastic_javascript_checkers = ['eslint']
 " auto open location list when errors are found
 " let g:syntastic_auto_loc_list = 1
 " let g:syntastic_always_populate_loc_list = 1
 
-Bundle 'lfilho/cosco.vim'
+Plug 'lfilho/cosco.vim'
 autocmd FileType javascript,css nnoremap <silent> <Leader>; :call cosco#commaOrSemiColon()<CR>
 autocmd FileType javascript,css inoremap <silent> <Leader>; <c-o>:call cosco#commaOrSemiColon()<CR>
 
@@ -221,8 +216,7 @@ filetype plugin indent on
 syntax on
 
 " dracula theme
-Bundle 'dracula/vim'
-color dracula
+Plug 'dracula/vim'
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
@@ -240,14 +234,16 @@ if (empty($TMUX))
   endif
 endif
 
-Bundle 'joshdick/onedark.vim'
+Plug 'joshdick/onedark.vim'
+
+call plug#end()
+
+" color themes setting should be put after plug#end()
+color dracula
 set background=dark
 " Note: All options should be set before the colorscheme onedark line in your ~/.vimrc.
 let g:onedark_terminal_italics = 1
 colorscheme onedark
-" Bundle 'joshdick/airline-onedark.vim'
-" let g:airline_theme='onedark'
-" call plug#end()
 
 hi Pmenu ctermfg=white ctermbg=242 guifg=#ffffff guibg=#6c6c6c
 hi PmenuSel ctermfg=white ctermbg=32 guifg=#ffffff guibg=#0087d7
@@ -353,7 +349,7 @@ endif
 " git clone https://github.com/kien/ctrlp.vim.git bundle/ctrlp.vim
 " ctrlp: {{{
 "
-Bundle "ctrlpvim/ctrlp.vim"
+Plug 'ctrlpvim/ctrlp.vim'
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 let g:ctrlp_map = '<c-p>'
