@@ -46,7 +46,6 @@ PR_NO_COLOR="%{$terminfo[sgr0]%}"
 # PS1="($PR_BLUE%n$PR_WHITE@$PR_GREEN%U%m%u$PR_NO_COLOR:$PR_RED%2c$PR_NO_COLOR)%(!.#.$) "
 PS1="<$PR_BLUE%n$PR_WHITE:$PR_RED%2c$PR_NO_COLOR>%(!.#.$) "
 RPS1="$PR_LIGHT_YELLOW(%D{%m-%d %H:%M})$PR_NO_COLOR"
-
 ## Completions
 autoload -U compinit
 compinit -C
@@ -84,7 +83,8 @@ function codehighlight {
 
 # nvm
 . ~/.nvm/nvm.sh
-nvm use 6.3
+nvm use 6.9.1
+PATH=$PATH:/Users/linmic/.nvm/versions/node/v6.9.1/bin
 
 export TERM=xterm-256color-italic
 
@@ -107,7 +107,8 @@ alias mysql_stop='sudo /usr/local/bin/mysqladmin shutdown'
 
 # -- lazy aliases --
 alias bb='brew update && brew upgrade'
-alias pg_start='pg_ctl -D /usr/local/var/postgres/data -l /usr/local/var/postgres/server.log start'
+# alias pg_start='pg_ctl -D /usr/local/var/postgres/data -l /usr/local/var/postgres/server.log start'
+alias pg_start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
 
 alias gitc='git link | pbcopy'
 
@@ -140,8 +141,9 @@ PATH=$PATH:$ORIGINAL_PATH
 # php autoconf
 PHP_AUTOCONF="/usr/local/bin/autoconf"
 
-# source ./zsh-git-prompt/zshrc.sh
-# PROMPT='%B%m%~%b$(git_super_status) %# '
+source ./zsh-git-prompt/zshrc.sh
+# PROMPT="%B%m%~%b$(git_super_status) %# "
+# PROMPT="$PROMPT$(git_super_status) %# "
 
 COWPATH="$COWPATH:$HOME/.cowsay"
 # Cow-spoken fortunes every time you open a terminal
@@ -158,3 +160,13 @@ cowsayfortune
 PATH=$PATH:/usr/local/sbin
 PHP_AUTOCONF="/usr/local/bin/autoconf"
 source ~/.bash_aliases
+export WORKON_HOME=~/.virtualenvs
+# source /usr/local/bin/virtualenvwrapper.sh
+PATH=$HOME/src/depot_tools:"$PATH"
+
+ANDROID_HOME=$HOME/Library/Android/sdk
+PATH=$PATH:$ANDROID_HOME/tools
+PATH=$PATH:$ANDROID_HOME/platform-tools
+
+JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home"
+PATH=$PATH:$JAVA_HOME/bin
