@@ -143,7 +143,7 @@ PHP_AUTOCONF="/usr/local/bin/autoconf"
 
 source ./zsh-git-prompt/zshrc.sh
 # PROMPT="%B%m%~%b$(git_super_status) %# "
-# PROMPT="$PROMPT$(git_super_status) %# "
+PROMPT="$PROMPT$(git_super_status)%# "
 
 COWPATH="$COWPATH:$HOME/.cowsay"
 # Cow-spoken fortunes every time you open a terminal
@@ -159,7 +159,7 @@ function cowsayfortune {
 cowsayfortune
 PATH=$PATH:/usr/local/sbin
 PHP_AUTOCONF="/usr/local/bin/autoconf"
-source ~/.bash_aliases
+# source ~/.bash_aliases
 export WORKON_HOME=~/.virtualenvs
 # source /usr/local/bin/virtualenvwrapper.sh
 PATH=$HOME/src/depot_tools:"$PATH"
@@ -170,3 +170,6 @@ PATH=$PATH:$ANDROID_HOME/platform-tools
 
 JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home"
 PATH=$PATH:$JAVA_HOME/bin
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export WORKON_HOME=~/Env
+source /usr/local/bin/virtualenvwrapper.sh

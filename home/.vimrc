@@ -18,6 +18,7 @@ filetype off
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'L9'
+Plug 'flowtype/vim-flow'
 Plug 'mhinz/vim-startify'
 " let g:startify_custom_header = ""
 function! s:filter_header(lines) abort
@@ -57,7 +58,40 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
 " Snippets
-Plug 'gmarik/snipmate.vim'
+" Plug 'gmarik/snipmate.vim'
+"
+" Track the engine.
+Plug 'SirVer/ultisnips'
+
+" acp
+" Plug 'AutoComplPop'
+" Plug 'othree/vim-autocomplpop'
+" Plug 'ervandew/supertab'
+Plug 'Valloric/YouCompleteMe'
+
+" Snippets are separated from the engine. Add this if you want them:
+" Plug 'honza/vim-snippets'
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:ycm_key_list_select_completion=["<tab>"]
+let g:ycm_key_list_previous_completion=["<S-tab>"]
+
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
+let g:UltiSnipsExpandTrigger="<nop>"
+let g:ulti_expand_or_jump_res = 0
+function! <SID>ExpandSnippetOrReturn()
+  let snippet = UltiSnips#ExpandSnippetOrJump()
+  if g:ulti_expand_or_jump_res > 0
+    return snippet
+  else
+    return "\<CR>"
+  endif
+endfunction
+inoremap <expr> <CR> pumvisible() ? "<C-R>=<SID>ExpandSnippetOrReturn()<CR>" : "\<CR>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 Plug 'digitaltoad/vim-jade'
 
@@ -74,19 +108,20 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'hail2u/vim-css3-syntax'
 
 " vim-react-snippets:
-Plug 'linmic/vim-react-snippets'
+" Plug 'linmic/vim-react-snippets'
+" Plug 'linmic/vim-react-es6-snippets'
 
 " SnipMate and its dependencies:
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
+" Plug 'MarcWeber/vim-addon-mw-utils'
+" Plug 'tomtom/tlib_vim'
+" Plug 'garbas/vim-snipmate'
 
 " coding style consistency tools, it's good for open source project
 " Plug 'editorconfig/editorconfig-vim'
 " Plug 'tpope/vim-sleuth'
 
 " Other sets of snippets (optional):
-Plug 'honza/vim-snippets'
+" Plug 'honza/vim-snippets'
 
 Plug 'guns/xterm-color-table.vim'
 
@@ -105,7 +140,7 @@ nmap ga <Plug>(EasyAlign)
 " javascript indenter
 " Plug 'jiangmiao/simple-javascript-indenter'
 
-Plug 'vim-ruby/vim-ruby'
+" Plug 'vim-ruby/vim-ruby'
 
 Plug 'bling/vim-airline'
 
@@ -129,12 +164,6 @@ Plug 'git.zip'
 Plug 'tpope/vim-fugitive'
 
 Plug 'slim-template/vim-slim'
-
-" acp
-" Plug 'AutoComplPop'
-" Plug 'othree/vim-autocomplpop'
-" Plug 'ervandew/supertab'
-Plug 'Valloric/YouCompleteMe'
 
 " Command-T
 " Plug 'git://git.wincent.com/command-t.git'
@@ -350,7 +379,8 @@ endif
 " ctrlp: {{{
 "
 Plug 'ctrlpvim/ctrlp.vim'
-set runtimepath^=~/.vim/bundle/ctrlp.vim
+" set runtimepath^=~/.vim/bundle/ctrlp.vim
+set runtimepath^=~/.config/nvim/plugged/ctrlp.vim
 
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
