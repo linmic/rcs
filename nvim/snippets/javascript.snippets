@@ -40,3 +40,14 @@ snippet cwu
 	componentWillUnmount() {
 		${0}
 	}
+snippet hoc
+	import React, { Component } from 'react';
+
+	export default function(ComposedComponent) {
+		class ${1:ClassName} extends Component {
+				return <ComposedComponent {...this.props} />
+			}
+		}
+
+		return ${2:$1};
+	}
