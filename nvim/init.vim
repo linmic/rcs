@@ -36,6 +36,8 @@ let g:ag_working_path_mode="r"
 " Plug 'https://github.com/gorodinskiy/vim-coloresque.git'
 Plug 'ap/vim-css-color'
 
+Plug 'w0rp/ale'
+
 Plug 'easymotion/vim-easymotion'
 map <Leader> <Plug>(easymotion-prefix)
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
@@ -227,12 +229,6 @@ Plug 'chilicuil/vim-sml-coursera'
 " let $JS_CMD='node'
 " }}}
 "
-Plug 'scrooloose/syntastic'
-" specify javascript checker to eslint
-let g:syntastic_javascript_checkers = ['eslint']
-" auto open location list when errors are found
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_always_populate_loc_list = 1
 
 Plug 'lfilho/cosco.vim'
 autocmd FileType javascript,css nnoremap <silent> <Leader>; :call cosco#commaOrSemiColon()<CR>
@@ -399,7 +395,7 @@ let g:ctrlp_custom_ignore = {
 " let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
 let g:ctrlp_user_command = {
   \ 'types': {
-    \ 1: ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f'],
+    \ 1: ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'ag %s -l --nocolor -g ""'],
     \ 2: ['.hg', 'hg --cwd %s locate -I .'],
     \ },
   \ 'fallback': 'find %s -type f'
