@@ -3,3 +3,5 @@
 *.swo
 *.swp
 *.pyc
+.vscode
+node_modules
