@@ -97,8 +97,8 @@ let g:UltiSnipsEditSplit="vertical"
 
 Plug 'digitaltoad/vim-jade'
 
-Plug 'mattn/emmet-vim'
-let g:user_emmet_leader_key=','
+" Plug 'mattn/emmet-vim'
+" let g:user_emmet_leader_key=','
 
 Plug 'nginx.vim'
 au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/*,/usr/local/etc/nginx/sites-available/* if &ft == '' | setfiletype nginx | endif
