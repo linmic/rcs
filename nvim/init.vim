@@ -270,6 +270,8 @@ set background=dark
 let g:onedark_terminal_italics = 1
 colorscheme onedark
 
+set mouse=a
+
 hi Pmenu ctermfg=white ctermbg=242 guifg=#ffffff guibg=#6c6c6c
 hi PmenuSel ctermfg=white ctermbg=32 guifg=#ffffff guibg=#0087d7
 
