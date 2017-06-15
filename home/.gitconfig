@@ -1,6 +1,6 @@
 [user]
-  name = Linmic
-  email = linmicya@gmail.com
+	name = Linmic
+	email = linmicya@gmail.com
 [alias]
   di = diff
   co = checkout
@@ -40,3 +40,5 @@
   clean = git-lfs clean %f
   smudge = git-lfs smudge %f
   required = true
+[commit]
+	gpgsign = false
