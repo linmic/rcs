@@ -118,7 +118,7 @@ elif [ $platform == 'freebsd' ]; then
   alias ls='ls -G'
 fi
 
-source $HOME/.iterm2_shell_integration.zsh
+#source $HOME/.iterm2_shell_integration.zsh
 
 ORIGINAL_PATH=$PATH
 # ruby path
@@ -162,9 +162,11 @@ PHP_AUTOCONF="/usr/local/bin/autoconf"
 # source ~/.bash_aliases
 export WORKON_HOME=~/.virtualenvs
 # source /usr/local/bin/virtualenvwrapper.sh
-PATH=$HOME/src/depot_tools:"$PATH"
+PATH="$PATH":$HOME/src/depot_tools
 
 ANDROID_HOME=$HOME/Library/Android/sdk
+ANDROID_SDK=$HOME/Library/Android/sdk
+ANDROID_NDK=$HOME/Library/Android/android-ndk-r10e
 PATH=$PATH:$ANDROID_HOME/tools
 PATH=$PATH:$ANDROID_HOME/platform-tools
 
