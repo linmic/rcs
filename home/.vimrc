@@ -17,7 +17,7 @@ filetype off
 " start using plug
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'L9'
+Plug 'vim-scripts/L9'
 Plug 'flowtype/vim-flow'
 Plug 'mhinz/vim-startify'
 " let g:startify_custom_header = ""
@@ -98,7 +98,8 @@ Plug 'digitaltoad/vim-jade'
 Plug 'mattn/emmet-vim'
 let g:user_emmet_leader_key=','
 
-Plug 'nginx.vim'
+" Plug 'nginx.vim'
+Plug 'vim-scripts/nginx.vim'
 au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/*,/usr/local/etc/nginx/sites-available/* if &ft == '' | setfiletype nginx | endif
 
 " auto-pairs
@@ -160,7 +161,7 @@ Plug 'othree/csscomplete.vim'
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS noci
 
 " Git integration
-Plug 'git.zip'
+Plug 'vim-scripts/git.zip'
 Plug 'tpope/vim-fugitive'
 
 Plug 'slim-template/vim-slim'
@@ -450,3 +451,4 @@ endfunction
 
 " NB: this supports "rp that replaces the selection by the contents of @r
 vnoremap <silent> <expr> p <sid>Repl()
+set mouse=nicr
