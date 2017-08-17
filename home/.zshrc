@@ -68,7 +68,7 @@ alias tls="tmux list-sessions"
 alias tat="tmux attach -t "
 
 # default ruby version
-rvm use ruby-2.2.3
+rvm use ruby-2.4.1
 
 # for checking webpage compressed or not
 function checkwebzip {
@@ -83,7 +83,7 @@ function codehighlight {
 
 # nvm
 . ~/.nvm/nvm.sh
-nvm use 6.9.1
+nvm use 6.11.2
 PATH=$PATH:/Users/linmic/.nvm/versions/node/v6.9.1/bin
 
 export TERM=xterm-256color-italic
@@ -122,7 +122,7 @@ fi
 
 ORIGINAL_PATH=$PATH
 # ruby path
-PATH=$HOME/.rvm/gems/ruby-2.2.3/bin:$HOME/.rvm/bin:$PATH
+PATH=$HOME/.rvm/gems/ruby-2.4.1/bin:$HOME/.rvm/bin:$PATH
 # coreutils
 PATH=$PATH:/usr/local/opt/coreutils/libexec/gnubin
 # system bin path
@@ -131,19 +131,21 @@ PATH=$PATH:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/sbin:/o
 PATH=$PATH:$HOME/bin
 # android path
 PATH=$PATH:$HOME/dev/adt-bundle-mac-x86_64-20140702/sdk/platform-tools:$HOME/dev/adt-bundle-mac-x86_64-20140702/sdk/tools
-# php path
-case $OSTYPE in darwin*)
-  PATH="$PATH:$(brew --prefix homebrew/php/php55)/sbin"
-esac
 # original path (if exists)
 PATH=$PATH:$ORIGINAL_PATH
 
 # php autoconf
 PHP_AUTOCONF="/usr/local/bin/autoconf"
 
+autoload -U colors && colors
 source ./zsh-git-prompt/zshrc.sh
 # PROMPT="%B%m%~%b$(git_super_status) %# "
-PROMPT="$PROMPT$(git_super_status)%# "
+# PROMPT="$PROMPT$(git_super_status)%# "
+# PROMPT="<0>$(git_super_status)"
+# PROMPT=$'\e[0;31m<0> \e[0m$(git_super_status)'
+# PROMPT=$'\e[0;31m<0> \e[0m$(git_super_status)'
+# PROMPT='%{$fg[yellow]%}(・ω・)%{$reset_color%}[$(basename `pwd`)]$(git_super_status)$ '
+PROMPT='%{$fg[yellow]%}(・ω・)%{$reset_color%}[L]$(git_super_status)$ '
 
 COWPATH="$COWPATH:$HOME/.cowsay"
 # Cow-spoken fortunes every time you open a terminal
