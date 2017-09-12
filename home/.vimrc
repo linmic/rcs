@@ -18,7 +18,7 @@ filetype off
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'vim-scripts/L9'
-Plug 'flowtype/vim-flow'
+" Plug 'flowtype/vim-flow'
 Plug 'mhinz/vim-startify'
 " let g:startify_custom_header = ""
 function! s:filter_header(lines) abort
@@ -68,6 +68,7 @@ Plug 'SirVer/ultisnips'
 " Plug 'othree/vim-autocomplpop'
 " Plug 'ervandew/supertab'
 Plug 'Valloric/YouCompleteMe'
+Plug 'mustache/vim-mustache-handlebars'
 
 " Snippets are separated from the engine. Add this if you want them:
 " Plug 'honza/vim-snippets'
