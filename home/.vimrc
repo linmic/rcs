@@ -17,8 +17,8 @@ filetype off
 " start using plug
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'L9'
-Plug 'flowtype/vim-flow'
+Plug 'vim-scripts/L9'
+" Plug 'flowtype/vim-flow'
 Plug 'mhinz/vim-startify'
 " let g:startify_custom_header = ""
 function! s:filter_header(lines) abort
@@ -68,6 +68,7 @@ Plug 'SirVer/ultisnips'
 " Plug 'othree/vim-autocomplpop'
 " Plug 'ervandew/supertab'
 Plug 'Valloric/YouCompleteMe'
+Plug 'mustache/vim-mustache-handlebars'
 
 " Snippets are separated from the engine. Add this if you want them:
 " Plug 'honza/vim-snippets'
@@ -98,7 +99,8 @@ Plug 'digitaltoad/vim-jade'
 Plug 'mattn/emmet-vim'
 let g:user_emmet_leader_key=','
 
-Plug 'nginx.vim'
+" Plug 'nginx.vim'
+Plug 'vim-scripts/nginx.vim'
 au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/*,/usr/local/etc/nginx/sites-available/* if &ft == '' | setfiletype nginx | endif
 
 " auto-pairs
@@ -160,7 +162,7 @@ Plug 'othree/csscomplete.vim'
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS noci
 
 " Git integration
-Plug 'git.zip'
+Plug 'vim-scripts/git.zip'
 Plug 'tpope/vim-fugitive'
 
 Plug 'slim-template/vim-slim'
@@ -450,3 +452,4 @@ endfunction
 
 " NB: this supports "rp that replaces the selection by the contents of @r
 vnoremap <silent> <expr> p <sid>Repl()
+set mouse=nicr

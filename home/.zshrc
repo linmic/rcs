@@ -131,19 +131,21 @@ PATH=$PATH:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/sbin:/o
 PATH=$PATH:$HOME/bin
 # android path
 PATH=$PATH:$HOME/dev/adt-bundle-mac-x86_64-20140702/sdk/platform-tools:$HOME/dev/adt-bundle-mac-x86_64-20140702/sdk/tools
-# php path
-case $OSTYPE in darwin*)
-  PATH="$PATH:$(brew --prefix homebrew/php/php55)/sbin"
-esac
 # original path (if exists)
 PATH=$PATH:$ORIGINAL_PATH
 
 # php autoconf
 PHP_AUTOCONF="/usr/local/bin/autoconf"
 
+autoload -U colors && colors
 source ./zsh-git-prompt/zshrc.sh
 # PROMPT="%B%m%~%b$(git_super_status) %# "
-PROMPT="$PROMPT$(git_super_status)%# "
+# PROMPT="$PROMPT$(git_super_status)%# "
+# PROMPT="<0>$(git_super_status)"
+# PROMPT=$'\e[0;31m<0> \e[0m$(git_super_status)'
+# PROMPT=$'\e[0;31m<0> \e[0m$(git_super_status)'
+# PROMPT='%{$fg[yellow]%}(・ω・)%{$reset_color%}[$(basename `pwd`)]$(git_super_status)$ '
+PROMPT='%{$fg[yellow]%}(・ω・)%{$reset_color%}[L]$(git_super_status)$ '
 
 COWPATH="$COWPATH:$HOME/.cowsay"
 # Cow-spoken fortunes every time you open a terminal
