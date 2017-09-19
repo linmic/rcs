@@ -63,6 +63,9 @@ map <Leader>k <Plug>(easymotion-k)
 " Track the engine.
 Plug 'SirVer/ultisnips'
 
+Plug 'neovimhaskell/haskell-vim'
+Plug 'vim-erlang/vim-erlang-runtime'
+
 " acp
 " Plug 'AutoComplPop'
 " Plug 'othree/vim-autocomplpop'

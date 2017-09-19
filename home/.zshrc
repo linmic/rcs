@@ -25,6 +25,7 @@ export vi='nvim'
 export vim='nvim'
 
 alias vim='nvim'
+alias prettify='prettier --single-quote --print-width 120 --trailing-comma es5 --write'
 
 # fix keybindings
 bindkey -e # for emacs
@@ -86,6 +87,8 @@ function codehighlight {
 nvm use 8.5.0
 PATH=$PATH:/Users/linmic/.nvm/versions/node/v8.3.0/bin
 
+PATH=$PATH:/Applications/Charles.app/Contents/MacOS
+
 export TERM=xterm-256color-italic
 
 #This line will tell the Go installer where to place the source code before compilation
@@ -144,8 +147,8 @@ source ./zsh-git-prompt/zshrc.sh
 # PROMPT="<0>$(git_super_status)"
 # PROMPT=$'\e[0;31m<0> \e[0m$(git_super_status)'
 # PROMPT=$'\e[0;31m<0> \e[0m$(git_super_status)'
-# PROMPT='%{$fg[yellow]%}(・ω・)%{$reset_color%}[$(basename `pwd`)]$(git_super_status)$ '
-PROMPT='%{$fg[yellow]%}(・ω・)%{$reset_color%}[L]$(git_super_status)$ '
+PROMPT='%{$fg[yellow]%}(・ω・)%{$reset_color%}[L][$(basename `pwd`)]$(git_super_status)$ '
+# PROMPT='%{$fg[yellow]%}(・ω・)%{$reset_color%}[L]$(git_super_status)$ '
 
 COWPATH="$COWPATH:$HOME/.cowsay"
 # Cow-spoken fortunes every time you open a terminal
@@ -178,3 +181,6 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 export WORKON_HOME=~/Env
 source /usr/local/bin/virtualenvwrapper.sh
 export GPG_TTY=$(tty)
+
+# internal use only
+alias chrome="open -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome \--args --ignore-certificate-errors --disable-web-security"
