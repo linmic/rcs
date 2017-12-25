@@ -121,7 +121,7 @@ alias pg_start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/ser
 alias gitc='git link | pbcopy'
 
 if [ $platform == 'linux' ] || [ $platform == 'osx' ]; then
-  # alias ls='ls --color=auto'
+  alias ls='ls --color=auto'
 elif [ $platform == 'freebsd' ]; then
   alias ls='ls -G'
 fi
