@@ -66,6 +66,8 @@ Plug 'SirVer/ultisnips'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'vim-erlang/vim-erlang-runtime'
 
+Plug 'tpope/vim-fireplace'
+
 " acp
 " Plug 'AutoComplPop'
 " Plug 'othree/vim-autocomplpop'

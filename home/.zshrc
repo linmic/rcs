@@ -1,4 +1,6 @@
-ZSH=$HOME/.oh-my-zsh
+# ZSH=$HOME/.oh-my-zsh
+ZSH_CUSTOM=$HOME/.zsh_custom
+ZSH_THEME="spaceship"
 
 platform='unknown'
 unamestr=`uname`
@@ -25,6 +27,7 @@ export vi='nvim'
 export vim='nvim'
 
 alias vim='nvim'
+alias checkin='/usr/bin/python $HOME/dev/checkin/checkin.py'
 alias prettify='prettier --single-quote --print-width 120 --trailing-comma es5 --write'
 
 # fix keybindings
@@ -44,7 +47,6 @@ for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
 done
 
 PR_NO_COLOR="%{$terminfo[sgr0]%}"
-# PS1="($PR_BLUE%n$PR_WHITE@$PR_GREEN%U%m%u$PR_NO_COLOR:$PR_RED%2c$PR_NO_COLOR)%(!.#.$) "
 PS1="<$PR_BLUE%n$PR_WHITE:$PR_RED%2c$PR_NO_COLOR>%(!.#.$) "
 RPS1="$PR_LIGHT_YELLOW(%D{%m-%d %H:%M})$PR_NO_COLOR"
 ## Completions
@@ -84,11 +86,14 @@ function codehighlight {
 
 # nvm
 . ~/.nvm/nvm.sh
-nvm use 8.5.0
+nvm use 8.9.3
 PATH=$PATH:/Users/linmic/.nvm/versions/node/v8.3.0/bin
 
 PATH=$PATH:/Applications/Charles.app/Contents/MacOS
 
+PATH=$PATH:/Applications/MAMP/Library/bin
+
+PATH=$PATH:$HOME/.bin
 export TERM=xterm-256color-italic
 
 #This line will tell the Go installer where to place the source code before compilation
@@ -133,7 +138,7 @@ PATH=$PATH:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/sbin:/o
 # user bin path
 PATH=$PATH:$HOME/bin
 # android path
-PATH=$PATH:$HOME/dev/adt-bundle-mac-x86_64-20140702/sdk/platform-tools:$HOME/dev/adt-bundle-mac-x86_64-20140702/sdk/tools
+# PATH=$PATH:$HOME/dev/adt-bundle-mac-x86_64-20140702/sdk/platform-tools:$HOME/dev/adt-bundle-mac-x86_64-20140702/sdk/tools
 # original path (if exists)
 PATH=$PATH:$ORIGINAL_PATH
 
@@ -142,13 +147,7 @@ PHP_AUTOCONF="/usr/local/bin/autoconf"
 
 autoload -U colors && colors
 source ./zsh-git-prompt/zshrc.sh
-# PROMPT="%B%m%~%b$(git_super_status) %# "
-# PROMPT="$PROMPT$(git_super_status)%# "
-# PROMPT="<0>$(git_super_status)"
-# PROMPT=$'\e[0;31m<0> \e[0m$(git_super_status)'
-# PROMPT=$'\e[0;31m<0> \e[0m$(git_super_status)'
 PROMPT='%{$fg[yellow]%}(・ω・)%{$reset_color%}[L][$(basename `pwd`)]$(git_super_status)$ '
-# PROMPT='%{$fg[yellow]%}(・ω・)%{$reset_color%}[L]$(git_super_status)$ '
 
 COWPATH="$COWPATH:$HOME/.cowsay"
 # Cow-spoken fortunes every time you open a terminal
@@ -172,6 +171,7 @@ PATH="$PATH":$HOME/src/depot_tools
 ANDROID_HOME=$HOME/Library/Android/sdk
 ANDROID_SDK=$HOME/Library/Android/sdk
 ANDROID_NDK=$HOME/Library/Android/android-ndk-r10e
+PATH=$PATH:$ANDROID_HOME/emulator
 PATH=$PATH:$ANDROID_HOME/tools
 PATH=$PATH:$ANDROID_HOME/platform-tools
 
@@ -184,3 +184,6 @@ export GPG_TTY=$(tty)
 
 # internal use only
 alias chrome="open -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome \--args --ignore-certificate-errors --disable-web-security"
+alias git_set_gmail="git config user.email 'linmicya@gmail.com'"
+
+alias findf='find . -type f -name'
