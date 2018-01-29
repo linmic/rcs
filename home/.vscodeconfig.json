@@ -1,0 +1,24 @@
+{
+  "window.zoomLevel": 1,
+  "editor.fontSize": 11,
+  "editor.fontFamily": "SF Mono",
+  "terminal.integrated.fontSize": 11,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "javascript.validate.enable": false,
+  "files.trimTrailingWhitespace": true,
+  "eslint.enable": false,
+  "workbench.colorTheme": "Dracula",
+  "explorer.confirmDragAndDrop": false,
+  "workbench.startupEditor": "newUntitledFile",
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "comment",
+        "settings": {
+          "fontStyle": "italic"
+        }
+      }
+    ]
+  }
+}
