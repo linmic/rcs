@@ -71,7 +71,7 @@ alias tls="tmux list-sessions"
 alias tat="tmux attach -t "
 
 # default ruby version
-rvm use ruby-2.4.1
+rvm use ruby-2.5.0
 
 # for checking webpage compressed or not
 function checkwebzip {
@@ -86,8 +86,8 @@ function codehighlight {
 
 # nvm
 . ~/.nvm/nvm.sh
-nvm use 8.9.3
-PATH=$PATH:/Users/linmic/.nvm/versions/node/v8.3.0/bin
+nvm use 8.9.4
+PATH=$PATH:/Users/linmic/.nvm/versions/node/v8.9.4/bin
 
 PATH=$PATH:/Applications/Charles.app/Contents/MacOS
 
@@ -130,7 +130,7 @@ fi
 
 ORIGINAL_PATH=$PATH
 # ruby path
-PATH=$HOME/.rvm/gems/ruby-2.4.1/bin:$HOME/.rvm/bin:$PATH
+PATH=$HOME/.rvm/gems/ruby-2.5.0/bin:$HOME/.rvm/bin:$PATH
 # coreutils
 PATH=$PATH:/usr/local/opt/coreutils/libexec/gnubin
 # system bin path
