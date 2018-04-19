@@ -147,7 +147,7 @@ PHP_AUTOCONF="/usr/local/bin/autoconf"
 
 autoload -U colors && colors
 source ./zsh-git-prompt/zshrc.sh
-PROMPT='%{$fg[red]%}Ł%{$reset_color%}:%{$fg[cyan]%}$(pwd)%{$reset_color%}$(git_super_status)¥ '
+PROMPT='%{$fg[red]%}Ł%{$reset_color%}:%{$fg[cyan]%}$(basename $(dirname "$PWD"))/$(basename "$PWD")%{$reset_color%}$(git_super_status)¥ '
 
 COWPATH="$COWPATH:$HOME/.cowsay"
 # Cow-spoken fortunes every time you open a terminal
