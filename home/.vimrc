@@ -1,8 +1,5 @@
 " .vimrc by Linmic <linmicya@gmail.com>
 
-" Vundle preconfig
-" git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-"
 " Bundle
 " curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "
@@ -27,7 +24,7 @@ function! s:filter_header(lines) abort
     \ 'repeat(" ", (&columns / 2) - (longest_line / 2)) . v:val')
   return centered_lines
 endfunction
-" let g:startify_custom_header = s:filter_header(['a', 'bb', 'ccc'])
+
 let g:startify_custom_header = s:filter_header(map(split(system('fortune | cowsay -d'), '\n'), '"   ". v:val') + ['',''])
 
 Plug 'rking/ag.vim'
@@ -35,6 +32,38 @@ let g:ag_working_path_mode="r"
 
 " Plug 'https://github.com/gorodinskiy/vim-coloresque.git'
 Plug 'ap/vim-css-color'
+
+" NeoVim language client
+" Pre: yarn global add ocaml-language-server
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+" (Optional) Multi-entry selection UI.
+Plug 'junegunn/fzf'
+
+" (Completion plugin option 1)
+" Plug 'roxma/nvim-completion-manager'
+" (Completion plugin option 2)
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+" Required for operations modifying multiple buffers like rename.
+set hidden
+
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['javascript-typescript-stdio'],
+    \ 'reason': ['ocaml-language-server', '--stdio'],
+    \ 'ocaml': ['ocaml-language-server', '--stdio'],
+    \ }
+
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+
+Plug 'reasonml-editor/vim-reason-plus'
 
 Plug 'easymotion/vim-easymotion'
 map <Leader> <Plug>(easymotion-prefix)
@@ -114,6 +143,18 @@ Plug 'jiangmiao/auto-pairs'
 " CSS3 syntax
 Plug 'hail2u/vim-css3-syntax'
 
+" prettier
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+let g:prettier#exec_cmd_path = "/usr/local/bin/prettier"
+
+" python
+Plug 'vim-scripts/indentpython.vim'
+
+Plug 'posva/vim-vue'
+autocmd FileType vue syntax sync fromstart
+
 " vim-react-snippets:
 " Plug 'linmic/vim-react-snippets'
 " Plug 'linmic/vim-react-es6-snippets'
@@ -156,6 +197,10 @@ Plug 'https://github.com/wavded/vim-stylus.git'
 
 " go
 Plug 'fatih/vim-go'
+
+let g:python_host_prog = '/usr/local/bin/python'
+let g:python2_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 " javascript
 Plug 'pangloss/vim-javascript'
@@ -236,7 +281,7 @@ Plug 'chilicuil/vim-sml-coursera'
 "
 Plug 'scrooloose/syntastic'
 " specify javascript checker to eslint
-let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_checkers = ['eslint']
 " auto open location list when errors are found
 " let g:syntastic_auto_loc_list = 1
 " let g:syntastic_always_populate_loc_list = 1
@@ -252,7 +297,10 @@ filetype plugin indent on
 syntax on
 
 " dracula theme
-Plug 'dracula/vim'
+" Plug 'dracula/vim'
+
+" monokai pro
+Plug 'phanviet/vim-monokai-pro'
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
@@ -275,11 +323,13 @@ Plug 'joshdick/onedark.vim'
 call plug#end()
 
 " color themes setting should be put after plug#end()
-color dracula
-set background=dark
+" color dracula
+" set background=dark
 " Note: All options should be set before the colorscheme onedark line in your ~/.vimrc.
-let g:onedark_terminal_italics = 1
-colorscheme onedark
+" let g:onedark_terminal_italics = 1
+" colorscheme onedark
+set termguicolors
+colorscheme monokai_pro 
 
 hi Pmenu ctermfg=white ctermbg=242 guifg=#ffffff guibg=#6c6c6c
 hi PmenuSel ctermfg=white ctermbg=32 guifg=#ffffff guibg=#0087d7
@@ -458,3 +508,6 @@ endfunction
 " NB: this supports "rp that replaces the selection by the contents of @r
 vnoremap <silent> <expr> p <sid>Repl()
 set mouse=nicr
+
+autocmd FileChangedRO * echohl WarningMsg | echo "File changed RO." | echohl None
+autocmd FileChangedShell * echohl WarningMsg | echo "File changed shell." | echohl None

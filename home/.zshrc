@@ -1,26 +1,14 @@
 # ZSH=$HOME/.oh-my-zsh
 ZSH_CUSTOM=$HOME/.zsh_custom
-ZSH_THEME="spaceship"
-
-platform='unknown'
-unamestr=`uname`
-if [[ "$unamestr" == 'Linux' ]]; then
-  platform='linux'
-elif [[ "$unamestr" == 'Darwin' ]]; then
-  platform='osx'
-elif [[ "$unamestr" == 'FreeBSD' ]]; then
-  platform='freebsd'
-fi
+# ZSH_THEME="spaceship"
 
 TZ="Asia/Taipei"
 HISTFILE=$HOME/.zhistory
 HISTSIZE=2000
 SAVEHIST=1000
 HOSTNAME="`hostname`"
-PAGER='less'
+PAGER="less"
 
-# export EDITOR="vim"
-# export GIT_EDITOR="vim"
 export EDITOR='nvim'
 export GIT_EDITOR='nvim'
 export vi='nvim'
@@ -28,12 +16,9 @@ export vim='nvim'
 
 alias vim='nvim'
 alias checkin='/usr/bin/python $HOME/dev/checkin/checkin.py'
-alias prettify='prettier --single-quote --print-width 120 --trailing-comma es5 --write'
+alias prettify='prettier --single-quote --print-width 80 --trailing-comma es5 --parser babylon --write'
 
-# fix keybindings
 bindkey -e # for emacs
-# bindkey "^[OH" beginning-of-line
-# bindkey "^[OF" end-of-line
 
 autoload colors zsh/terminfo
 if [[ "$terminfo[colors]" -ge 8 ]]; then
@@ -86,8 +71,11 @@ function codehighlight {
 
 # nvm
 . ~/.nvm/nvm.sh
-nvm use 8.9.4
-PATH=$PATH:/Users/linmic/.nvm/versions/node/v8.9.4/bin
+nvm use 10.17.0
+nvm alias default 10.17.0
+PATH=$PATH:/Users/linmic/.nvm/versions/node/v10.17.0/bin
+
+PATH=$PATH:/Users/linmic/Library/Python/3.7/bin
 
 PATH=$PATH:/Applications/Charles.app/Contents/MacOS
 
@@ -108,6 +96,10 @@ export GOPATH=$HOME/go
 #Include Go binaries in command path
 export PATH=$PATH:$GOBIN
 
+# tmp for paidy-test-app
+export GOPATH=`pwd`
+export PATH=$PATH:$GOPATH/bin
+
 # aliases 
 # -- mysql --
 alias mysql_start='sudo /usr/local/bin/mysqld_safe &'
@@ -120,11 +112,7 @@ alias pg_start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/ser
 
 alias gitc='git link | pbcopy'
 
-if [ $platform == 'linux' ] || [ $platform == 'osx' ]; then
-  alias ls='ls --color=auto'
-elif [ $platform == 'freebsd' ]; then
-  alias ls='ls -G'
-fi
+alias ls='ls -G'
 
 #source $HOME/.iterm2_shell_integration.zsh
 
@@ -177,9 +165,9 @@ PATH=$PATH:$ANDROID_HOME/platform-tools
 
 JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home"
 PATH=$PATH:$JAVA_HOME/bin
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-export WORKON_HOME=~/Env
-source /usr/local/bin/virtualenvwrapper.sh
+# export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+# export WORKON_HOME=~/Env
+# source /usr/local/bin/virtualenvwrapper.sh
 export GPG_TTY=$(tty)
 
 # internal use only
@@ -187,3 +175,40 @@ alias chrome="open -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Ch
 alias git_set_gmail="git config user.email 'linmicya@gmail.com'"
 
 alias findf='find . -type f -name'
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+alias nvim-update='nvim +PlugInstall +UpdateRemotePlugins +mysql_start'
+
+setopt auto_cd
+cdpath=($HOME/dev $HOME/src $HOME/dev/paidy)
+
+alias ssh-fe-staging="ssh ubuntu@18.182.23.0 -i $HOME/.ssh/web-staging.pem"
+alias ssh-fe-test="ssh ubuntu@web.test.paidy.io.internal -i $HOME/.ssh/paidy-v2-development.pem"
+
+# added by travis gem
+[ -f /Users/linmic/.travis/travis.sh ] && source /Users/linmic/.travis/travis.sh
+
+alias paidy-aws-test='aws --profile test-fe'
+alias paidy-aws-prod='aws --profile prod-fe'
+
+alias ec2-tgk='ssh -i $HOME/ec2-tgk.pem ubuntu@ec2-3-112-44-195.ap-northeast-1.compute.amazonaws.com'
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/linmic/dev/paidy/checkout/app/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/linmic/dev/paidy/checkout/app/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/linmic/dev/paidy/checkout/app/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/linmic/dev/paidy/checkout/app/node_modules/tabtab/.completions/sls.zsh
+
+export BS_API_KEY='usWyy6Rz3pzm4QRMNHy9'
+export BROWSERSTACK_USERNAME=leesmith7
+export BROWSERSTACK_ACCESS_KEY=usWyy6Rz3pzm4QRMNHy9
+export BROWSERSTACK_USE_AUTOMATE=1
+
+# Set Spaceship ZSH as a prompt
+# autoload -U promptinit; promptinit
+# prompt spaceship
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/linmic/.sdkman"
+[[ -s "/Users/linmic/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/linmic/.sdkman/bin/sdkman-init.sh"
