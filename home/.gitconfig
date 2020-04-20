@@ -28,17 +28,19 @@
   whitespace = nowarn
 [pull]
   default = simple
-[pager]
-    # diff =
 [push]
   default = current
 [diff]
   tool = icdiff
 [difftool "icdiff"]
   cmd = icdiff $LOCAL $REMOTE
-[filter "lfs"]
-  clean = git-lfs clean %f
-  smudge = git-lfs smudge %f
-  required = true
 [commit]
-	gpgsign = false
+	gpgsign = true
+[gpg]
+	program = gpg
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+

@@ -1,24 +1,38 @@
 {
-  "window.zoomLevel": 1,
-  "editor.fontSize": 11,
-  "editor.fontFamily": "SF Mono",
-  "terminal.integrated.fontSize": 11,
-  "editor.tabSize": 2,
+  "editor.fontFamily": "Monolisa",
   "editor.wordWrap": "on",
-  "javascript.validate.enable": false,
-  "files.trimTrailingWhitespace": true,
-  "eslint.enable": false,
-  "workbench.colorTheme": "Dracula",
+  "editor.tabSize": 2,
+  "editor.fontSize": 13,
+  "editor.lineHeight": 20,
+  "editor.fontLigatures": true,
+  "window.zoomLevel": 1,
   "explorer.confirmDragAndDrop": false,
   "workbench.startupEditor": "newUntitledFile",
+  "editor.formatOnSave": true,
+  "[json]": {
+    "editor.formatOnSave": true
+  },
+  "emmet.triggerExpansionOnTab": true,
   "editor.tokenColorCustomizations": {
     "textMateRules": [
       {
         "scope": "comment",
         "settings": {
-          "fontStyle": "italic"
+          "fontStyle": "italic",
+          "foreground": "#777"
         }
       }
     ]
-  }
+  },
+  "workbench.colorTheme": "Monokai Pro",
+  "workbench.iconTheme": "Monokai Pro Icons",
+  "explorer.confirmDelete": false,
+  "prettier.disableLanguages": ["vue", "golang"],
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "files.associations": {
+    "*.js": "javascriptreact"
+  },
+  "typescript.validate.enable": false,
+  "javascript.validate.enable": false
 }

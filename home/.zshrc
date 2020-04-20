@@ -1,6 +1,9 @@
-# ZSH=$HOME/.oh-my-zsh
-ZSH_CUSTOM=$HOME/.zsh_custom
-ZSH_THEME="spaceship"
+export ZSH="/Users/linmic/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
+
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
 
 platform='unknown'
 unamestr=`uname`
@@ -19,36 +22,14 @@ SAVEHIST=1000
 HOSTNAME="`hostname`"
 PAGER='less'
 
-# export EDITOR="vim"
-# export GIT_EDITOR="vim"
 export EDITOR='nvim'
 export GIT_EDITOR='nvim'
 export vi='nvim'
 export vim='nvim'
 
 alias vim='nvim'
-alias checkin='/usr/bin/python $HOME/dev/checkin/checkin.py'
-alias prettify='prettier --single-quote --print-width 120 --trailing-comma es5 --write'
+alias prettify='prettier --single-quote --print-width 80 --trailing-comma es5 --write'
 
-# fix keybindings
-bindkey -e # for emacs
-# bindkey "^[OH" beginning-of-line
-# bindkey "^[OF" end-of-line
-
-autoload colors zsh/terminfo
-if [[ "$terminfo[colors]" -ge 8 ]]; then
-  colors
-fi
-
-for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
-  eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
-  eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
-  (( count = $count + 1 ))
-done
-
-PR_NO_COLOR="%{$terminfo[sgr0]%}"
-PS1="<$PR_BLUE%n$PR_WHITE:$PR_RED%2c$PR_NO_COLOR>%(!.#.$) "
-RPS1="$PR_LIGHT_YELLOW(%D{%m-%d %H:%M})$PR_NO_COLOR"
 ## Completions
 autoload -U compinit
 compinit -C
@@ -70,8 +51,9 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 alias tls="tmux list-sessions"
 alias tat="tmux attach -t "
 
-# default ruby version
-rvm use ruby-2.5.0
+# ruby
+export PATH=/usr/local/opt/ruby/bin:$PATH
+export PATH=/usr/local/mysql/bin:$PATH
 
 # for checking webpage compressed or not
 function checkwebzip {
@@ -85,16 +67,23 @@ function codehighlight {
 }
 
 # nvm
-. ~/.nvm/nvm.sh
-nvm use 8.9.4
-PATH=$PATH:/Users/linmic/.nvm/versions/node/v8.9.4/bin
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+. ~/.nvm/nvm.sh
+nvm use 12.16.2
+PATH=$PATH:$HOME/.nvm/versions/node/v12.16.2/bin
+
+export GPG_TTY=$(tty)
+
+# Charles
 PATH=$PATH:/Applications/Charles.app/Contents/MacOS
 
+# MAMP
 PATH=$PATH:/Applications/MAMP/Library/bin
 
 PATH=$PATH:$HOME/.bin
-export TERM=xterm-256color-italic
 
 #This line will tell the Go installer where to place the source code before compilation
 export GOPATH=$HOME/go
@@ -115,75 +104,19 @@ alias mysql_stop='sudo /usr/local/bin/mysqladmin shutdown'
 
 # -- lazy aliases --
 alias bb='brew update && brew upgrade'
-# alias pg_start='pg_ctl -D /usr/local/var/postgres/data -l /usr/local/var/postgres/server.log start'
 alias pg_start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
 
-alias gitc='git link | pbcopy'
+# yarn needs this to work globally without issues
+export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:/usr/local/sbin
 
-if [ $platform == 'linux' ] || [ $platform == 'osx' ]; then
-  alias ls='ls --color=auto'
-elif [ $platform == 'freebsd' ]; then
-  alias ls='ls -G'
-fi
-
-#source $HOME/.iterm2_shell_integration.zsh
-
-ORIGINAL_PATH=$PATH
-# ruby path
-PATH=$HOME/.rvm/gems/ruby-2.5.0/bin:$HOME/.rvm/bin:$PATH
-# coreutils
-PATH=$PATH:/usr/local/opt/coreutils/libexec/gnubin
-# system bin path
-PATH=$PATH:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/sbin:/opt/X11/bin
-# user bin path
-PATH=$PATH:$HOME/bin
-# android path
-# PATH=$PATH:$HOME/dev/adt-bundle-mac-x86_64-20140702/sdk/platform-tools:$HOME/dev/adt-bundle-mac-x86_64-20140702/sdk/tools
-# original path (if exists)
-PATH=$PATH:$ORIGINAL_PATH
-
-# php autoconf
-PHP_AUTOCONF="/usr/local/bin/autoconf"
-
-autoload -U colors && colors
-source ./zsh-git-prompt/zshrc.sh
-PROMPT='%{$fg[red]%}Ł%{$reset_color%}:%{$fg[cyan]%}$(basename $(dirname "$PWD"))/$(basename "$PWD")%{$reset_color%}$(git_super_status)¥ '
-
-COWPATH="$COWPATH:$HOME/.cowsay"
-# Cow-spoken fortunes every time you open a terminal
-function cowsayfortune {
-  NUMOFCOWS=`cowsay -l | tail -n +2 | wc -w`
-  WHICHCOW=$((RANDOM%$NUMOFCOWS+1))
-  THISCOW=`cowsay -l | tail -n +2 | sed -e 's/\ /\'$'\n/g' | sed $WHICHCOW'q;d'`
-
-  #echo "Selected cow: ${THISCOW}, from ${WHICHCOW}"
-  fortune | cowsay -f $THISCOW -W 100
-}
-
-cowsayfortune
-PATH=$PATH:/usr/local/sbin
-PHP_AUTOCONF="/usr/local/bin/autoconf"
-# source ~/.bash_aliases
-export WORKON_HOME=~/.virtualenvs
-# source /usr/local/bin/virtualenvwrapper.sh
-PATH="$PATH":$HOME/src/depot_tools
-
-ANDROID_HOME=$HOME/Library/Android/sdk
-ANDROID_SDK=$HOME/Library/Android/sdk
-ANDROID_NDK=$HOME/Library/Android/android-ndk-r10e
-PATH=$PATH:$ANDROID_HOME/emulator
-PATH=$PATH:$ANDROID_HOME/tools
-PATH=$PATH:$ANDROID_HOME/platform-tools
-
-JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home"
-PATH=$PATH:$JAVA_HOME/bin
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-export WORKON_HOME=~/Env
-source /usr/local/bin/virtualenvwrapper.sh
-export GPG_TTY=$(tty)
-
-# internal use only
-alias chrome="open -a /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome \--args --ignore-certificate-errors --disable-web-security"
-alias git_set_gmail="git config user.email 'linmicya@gmail.com'"
-
-alias findf='find . -type f -name'
+# Java & Android
+export ANDROID_HOME=$HOME/Library/Android/sdk
+# only enable this if Android NDK is installed
+# ANDROID_NDK=$HOME/Library/Android/android-ndk-r10e
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/emulator
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+launchctl setenv JAVA_HOME /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+export PATH=$PATH:$JAVA_HOME/bin

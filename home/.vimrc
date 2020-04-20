@@ -1,8 +1,5 @@
 " .vimrc by Linmic <linmicya@gmail.com>
 
-" Vundle preconfig
-" git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-"
 " Bundle
 " curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "
@@ -458,3 +455,6 @@ endfunction
 " NB: this supports "rp that replaces the selection by the contents of @r
 vnoremap <silent> <expr> p <sid>Repl()
 set mouse=nicr
+
+let g:python2_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
