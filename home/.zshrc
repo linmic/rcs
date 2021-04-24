@@ -48,8 +48,15 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 # Load RVM function
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
 
+rvm use 2.7
+
 alias tls="tmux list-sessions"
 alias tat="tmux attach -t "
+
+export PATH=$HOME/.bin:$PATH
+# export PATH=/usr/local/opt/tig/etc/bash_completion.d:$PATH
+export PATH="/usr/local/opt/mozjpeg/bin:$PATH"
+export PATH=$HOME/Library/Python/3.8/lib/python/site-packages:$PATH
 
 # ruby
 export PATH=/usr/local/opt/ruby/bin:$PATH
@@ -72,8 +79,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 . ~/.nvm/nvm.sh
-nvm use 12.16.2
-PATH=$PATH:$HOME/.nvm/versions/node/v12.16.2/bin
+nvm use 12.22.0
+PATH=$PATH:$HOME/.nvm/versions/node/v12.22.0/bin
 
 export GPG_TTY=$(tty)
 
@@ -107,6 +114,7 @@ alias bb='brew update && brew upgrade'
 alias pg_start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
 
 # yarn needs this to work globally without issues
+export PATH="$(yarn global bin):$PATH"
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:/usr/local/sbin
 
@@ -120,3 +128,34 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
 launchctl setenv JAVA_HOME /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
 export PATH=$PATH:$JAVA_HOME/bin
+
+alias fastlane='bundle exec fastlane'
+
+# app secrets -> DON'T COMMIT THIS
+export SIGNING_STORE_PASSWORD='paidyuxe'
+export SIGNING_KEY_PASSWORD='paidyuxe'
+export SIGNING_KEY_ALIAS='key0'
+
+export SIGNING_STORE_PASSWORD_PROD='@Pay123!'
+export SIGNING_KEY_PASSWORD_PROD='MyPaidy'
+export SIGNING_KEY_ALIAS_PROD='paidyApp'
+
+# export APPLE_CONNECT_USERNAME='mobile-dev@paidy.com'
+# export APPLE_CONNECT_USERNAME='mobile@paidy.com'
+export APPLE_CONNECT_USERNAME='linmic@paidy.com'
+
+# export FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD='vmkn-rhsc-dmvs-yaxa'
+export FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD='ewys-zszm-ywzp-dcqs'
+# export MATCH_PASSWORD='@Paidy123!'
+# export MATCH_PASSWORD='@Pay123!'
+# export FASTLANE_PASSWORD='@Paidy123!'
+
+# alias imgsfit='ssh -i /Users/linmic/imgsfit-ec2.pem ubuntu@ec2-3-113-1-64.ap-northeast-1.compute.amazonaws.com'
+alias imgsfit='ssh -i /Users/linmic/imgsfit-ec2.pem ubuntu@imgs.fit'
+alias imgsfit2='ssh -i /Users/linmic/imgsfit.pem ubuntu@ec2-13-212-38-90.ap-southeast-1.compute.amazonaws.com'
+
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+alias ftx='ssh ftx-ai.app'

@@ -1,0 +1,9 @@
+:make	sml.txt	/*:make*
+SmlBugs	sml.txt	/*SmlBugs*
+SmlChangelog	sml.txt	/*SmlChangelog*
+SmlConfig	sml.txt	/*SmlConfig*
+SmlCredits	sml.txt	/*SmlCredits*
+SmlIntro	sml.txt	/*SmlIntro*
+SmlUsage	sml.txt	/*SmlUsage*
+sml-contents	sml.txt	/*sml-contents*
+sml.txt	sml.txt	/*sml.txt*
