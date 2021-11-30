@@ -69,7 +69,9 @@ Plug 'SirVer/ultisnips'
 " Plug 'AutoComplPop'
 " Plug 'othree/vim-autocomplpop'
 " Plug 'ervandew/supertab'
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
+
+Plug 'ackyshake/VimCompletesMe'
 
 " Snippets are separated from the engine. Add this if you want them:
 " Plug 'honza/vim-snippets'
@@ -259,8 +261,6 @@ if (empty($TMUX))
   endif
 endif
 
-Plug 'joshdick/onedark.vim'
-
 call plug#end()
 
 " color themes setting should be put after plug#end()
@@ -268,7 +268,6 @@ color dracula
 set background=dark
 " Note: All options should be set before the colorscheme onedark line in your ~/.vimrc.
 let g:onedark_terminal_italics = 1
-colorscheme onedark
 
 set mouse=a
 
