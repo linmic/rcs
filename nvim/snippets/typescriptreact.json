@@ -1,0 +1,25 @@
+{
+  "React component": {
+    "prefix": "rc",
+    "body": [
+      "type ${1:${TM_FILENAME_BASE}}Props = {};",
+      "",
+      "export default function ${1:${TM_FILENAME_BASE}}({}: ${1:${TM_FILENAME_BASE}}Props) {",
+      "  return ${0:<div />};",
+      "}"
+    ],
+    "description": "Function component (was the class component snippet)"
+  },
+  "Higher-order component": {
+    "prefix": "hoc",
+    "body": [
+      "import type { ComponentType } from 'react';",
+      "",
+      "export default function ${1:withThing}<P extends object>(Wrapped: ComponentType<P>) {",
+      "  return function ${2:WithThing}(props: P) {",
+      "    return <Wrapped {...props} />;",
+      "  };",
+      "}"
+    ]
+  }
+}

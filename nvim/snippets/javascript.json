@@ -1,0 +1,35 @@
+{
+  "useState": {
+    "prefix": "us",
+    "body": [
+      "const [${1:state}, ${2:setState}] = useState(${3});"
+    ]
+  },
+  "useEffect (cdm)": {
+    "prefix": [
+      "ue",
+      "cdm"
+    ],
+    "body": [
+      "useEffect(() => {",
+      "  ${0}",
+      "}, [${1}]);"
+    ],
+    "description": "Effect; replaces componentDidMount/componentWillReceiveProps"
+  },
+  "useEffect cleanup (cwu)": {
+    "prefix": [
+      "uec",
+      "cwu"
+    ],
+    "body": [
+      "useEffect(() => {",
+      "  ${1}",
+      "  return () => {",
+      "    ${0}",
+      "  };",
+      "}, [${2}]);"
+    ],
+    "description": "Effect with cleanup; replaces componentWillUnmount"
+  }
+}
