@@ -1,11 +1,12 @@
 -- Add a plugin by adding a line here, then restart (or run :Lazy sync).
 -- Comments name the old plugin each entry replaces.
 return {
-  -- dracula/vim
+  -- Matches the Rosé Pine theme in iTerm (was dracula/vim)
   {
-    "Mofiqul/dracula.nvim",
+    "rose-pine/neovim",
+    name = "rose-pine",
     priority = 1000,
-    config = function() vim.cmd.colorscheme("dracula") end,
+    config = function() vim.cmd.colorscheme("rose-pine") end,
   },
 
   -- vim-airline
@@ -13,7 +14,7 @@ return {
     "nvim-lualine/lualine.nvim",
     opts = {
       options = {
-        theme = "dracula-nvim",
+        theme = "rose-pine",
         icons_enabled = false,
         section_separators = "",
         component_separators = "|",
@@ -26,7 +27,11 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
+    keys = {
+      { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
+    },
     opts = {
+      lazygit = {},
       dashboard = {
         formats = { icon = function() return { "" } end }, -- no Nerd Font
         sections = {
