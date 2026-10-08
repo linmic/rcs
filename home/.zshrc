@@ -152,5 +152,20 @@ bindkey 'ç' fzf-cd-widget # iTerm's Option-C types ç rather than Alt-C
 _source_cached zoxide zoxide init zsh
 
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Tab accepts the grey suggestion when one is showing, and completes as
+# before (fzf's completion) otherwise
+_tab_fallback=${${(z)$(bindkey '^I')}[2]}
+_accept_suggestion_or_complete() {
+  if [[ -n $POSTDISPLAY ]]; then
+    zle autosuggest-accept
+  else
+    zle $_tab_fallback
+  fi
+}
+zle -N _accept_suggestion_or_complete
+bindkey '^I' _accept_suggestion_or_complete
+# Otherwise the plugin clears the suggestion before the widget can see it
+ZSH_AUTOSUGGEST_IGNORE_WIDGETS+=(_accept_suggestion_or_complete)
 # Must be sourced last
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
