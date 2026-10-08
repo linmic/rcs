@@ -79,6 +79,8 @@ _nvmrc_auto
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 ZSH_DISABLE_COMPFIX="true"
+# No update check on every shell start; run `omz update` by hand
+zstyle ':omz:update' mode disabled
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
